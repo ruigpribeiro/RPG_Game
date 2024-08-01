@@ -15,16 +15,15 @@ public abstract class Heroi extends Entidade {
     private List<Consumivel> inventario;
     private Scanner scanner;
 
-    public Heroi(String nome, int vidaMax, int vidaAtual, int forca, int nivel, int ouro, ArmaPrincipal armaPrincipal, List<Consumivel> inventario) {
-        super(nome, vidaMax, vidaAtual, forca);
-        this.nivel = nivel;
+    public Heroi(String nome, int vidaMax, int forca, int ouro) {
+        super(nome, vidaMax, forca);
+        this.nivel = 1;
         this.ouro = ouro;
-        this.armaPrincipal = armaPrincipal;
-        this.inventario = inventario;
+        this.inventario = new ArrayList<>();
         scanner = new Scanner(System.in);
     }
 
-    public abstract void atacar(NPC inimigo);
+    public abstract boolean atacar(NPC inimigo);
 
     /**
      * Imprime o inventário de poções do herói e pergunta qual quer usar
@@ -86,7 +85,25 @@ public abstract class Heroi extends Entidade {
         this.ouro = ouro;
     }
 
+    public ArmaPrincipal getArmaPrincipal() {
+        return armaPrincipal;
+    }
+
     public void setArmaPrincipal(ArmaPrincipal armaPrincipal) {
         this.armaPrincipal = armaPrincipal;
     }
+
+    public List<Consumivel> getInventario() {
+        return inventario;
+    }
+
+    public int getNivel() {
+        return nivel;
+    }
+
+    public void setNivel(int nivel) {
+        this.nivel = nivel;
+    }
+
+
 }

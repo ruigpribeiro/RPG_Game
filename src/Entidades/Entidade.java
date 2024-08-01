@@ -6,7 +6,7 @@ public abstract class Entidade {
     protected int vidaAtual;
     protected int forca;
 
-    public Entidade(String nome, int vidaMax, int vidaAtual, int forca) {
+    public Entidade(String nome, int vidaMax, int forca) {
         this.nome = nome;
         this.vidaMax = vidaMax;
         this.vidaAtual = vidaMax; // Começa com o valor máximo

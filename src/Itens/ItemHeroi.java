@@ -1,5 +1,7 @@
 package Itens;
 
+import Entidades.Heroi;
+
 import java.util.List;
 
 public abstract class ItemHeroi {
@@ -13,10 +15,11 @@ public abstract class ItemHeroi {
         this.heroisPermitidos = heroisPermitidos;
     }
 
+    /**
+     * Imprime os detalhes dos atributos desta classe.
+     */
     public void mostrarDetalhes() {
-        System.out.println("Nome: " + nome);
-        System.out.println("Preço em moedas de ouro: " + precoMoedasOuro);
-        System.out.println("Heróis: " + heroisPermitidos);
+        System.out.print("Nome: " + nome + " | Preço: " + precoMoedasOuro + " | Heróis Permitidos: " + heroisPermitidos);
     }
 
     public int getPrecoMoedasOuro() {
@@ -26,4 +29,6 @@ public abstract class ItemHeroi {
     public String getNome() {
         return nome;
     }
+
+
 }

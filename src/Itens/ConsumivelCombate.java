@@ -10,9 +10,13 @@ public class ConsumivelCombate extends Consumivel {
         this.ataqueInstantaneo = ataqueInstantaneo;
     }
 
+    public int getAtaqueInstantaneo() {
+        return ataqueInstantaneo;
+    }
+
     @Override
     public void mostrarDetalhes() {
         super.mostrarDetalhes();
-        System.out.println("Ataque Instantaneo: " + this.ataqueInstantaneo);
+        System.out.print(" | Ataque Instantaneo: " + this.ataqueInstantaneo);
     }
 }

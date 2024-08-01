@@ -29,8 +29,9 @@ public class Vendedor {
         for (int i = 0; i < 10; i++) {
             Random random = new Random();
             int num = random.nextInt(loja.size());
-            System.out.println(i+1 + ": " + loja.get(num));
+            System.out.print(i+1 + ": ");
             loja.get(num).mostrarDetalhes();
+            System.out.println();
         }
     }
 
@@ -72,5 +73,12 @@ public class Vendedor {
         loja.remove(opcao);
     }
 
+    /**
+     * Adiciona um item à arraylist loja
+     * @param itemHeroi Recebe um item como parametro
+     */
+    public void adicionarItem(ItemHeroi itemHeroi) {
+        loja.add(itemHeroi);
+    }
 
 }
