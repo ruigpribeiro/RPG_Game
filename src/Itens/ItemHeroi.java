@@ -30,5 +30,7 @@ public abstract class ItemHeroi {
         return nome;
     }
 
-
+    public List<String> getHeroisPermitidos() {
+        return heroisPermitidos;
+    }
 }
