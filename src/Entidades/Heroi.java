@@ -47,7 +47,7 @@ public abstract class Heroi extends Entidade {
         // Imprime todas as poções
         int count = 0;
         for (Pocao pocaoAtual : pocoes) {
-            System.out.println(count + ": " +  pocaoAtual);
+            System.out.println(pocaoAtual + ": " +  pocaoAtual);
         }
 
         System.out.print("Escolha uma Poção: ");
@@ -61,10 +61,16 @@ public abstract class Heroi extends Entidade {
 
         // Atualiza a vida atual e força do herói
         Pocao pocao = pocoes.get(opcao);
-        super.vidaAtual += pocao.getVidaACurar();
+
+        if ((super.vidaAtual + pocao.getVidaACurar() > vidaMax)) {
+            super.vidaAtual = vidaMax;
+        } else {
+            super.vidaAtual += pocao.getVidaACurar();
+        }
+
         super.forca += pocao.getAumentoForca();
 
-        System.out.println("Acabaste de receber a poção " + pocao + ". A tua vida e força foram aumentadas.");
+        System.out.println("Acabaste de usar a poção " + pocao + ". A tua vida e força foram aumentadas.");
         inventario.remove(pocao);
     }
 

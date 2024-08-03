@@ -1,9 +1,6 @@
 package Entidades;
 
-import Itens.ArmaPrincipal;
-import Itens.Consumivel;
-import Itens.ConsumivelCombate;
-import Itens.Pocao;
+import Itens.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,75 +41,87 @@ public class Cavaleiro extends Heroi {
             }
 
             // Turno do cavaleiro para atacar
-            System.out.println("O " + nome + " vai atacar...");
-            int opcao;
-            do {
-                System.out.println("Tipos de ataque:");
-                System.out.println("1. Ataque Normal");
-                System.out.println("2. Ataque Especial");
-                System.out.println("3. Ataque Consumível");
-                System.out.print("Escolha o ataque: ");
-                opcao = scanner.nextInt();
-            } while (opcao < 1 || opcao > 3);
+            System.out.println("O " + nome + " vai atacar...\n");
 
-            switch (opcao) {
-                // Ataque normal
-                case 1:
-                    inimigo.vidaAtual -= this.forca + this.getArmaPrincipal().getAtaque();
-                    System.out.println("Ataque Normal! Vida do inimigo: " + inimigo.vidaAtual);
-                    break;
-                // Ataque Especial
-                case 2:
-                    if (!jaUsouAtaqueEspecial) {
-                        inimigo.vidaAtual -= this.forca + this.getArmaPrincipal().getAtaqueEspecial();;
-                        jaUsouAtaqueEspecial = true;
-                        System.out.println("Ataque Especial! Vida do inimigo: " + inimigo.vidaAtual);
+            boolean skip = false;
+
+            while (!skip) {
+                int opcao;
+                do {
+                    System.out.println("Tipos de ataque:");
+                    System.out.println("1. Ataque Normal");
+                    System.out.println("2. Ataque Especial");
+                    System.out.println("3. Ataque Consumível");
+                    System.out.print("Escolha o ataque: ");
+                    opcao = scanner.nextInt();
+                    System.out.println();
+                } while (opcao < 1 || opcao > 3);
+
+                switch (opcao) {
+                    // Ataque normal
+                    case 1:
+                        inimigo.vidaAtual -= this.forca + this.getArmaPrincipal().getAtaque();
+                        System.out.println("Ataque Normal! Vida do inimigo: " + inimigo.vidaAtual);
+                        skip = true;
                         break;
-                    }
-                    System.out.println("O Ataque Especial já foi usado!");
-                    inimigo.vidaAtual -= this.forca + this.getArmaPrincipal().getAtaque();
-                    break;
-                // Ataque Consumivel
-                case 3:
-                    System.out.println("Lista de Consumíveis: ");
-                    List<ConsumivelCombate> consumivelCombates = new ArrayList<>();
-                    int counter = 1;
-
-                    // Imprime todos os consumiveis de combate e guarda-os num novo arraylist
-                    for (Consumivel consumivel : this.getInventario()) {
-                        if (consumivel instanceof ConsumivelCombate) {
-                            System.out.println(counter + ": " + consumivel.toString());
-                            consumivelCombates.add((ConsumivelCombate) consumivel);
-                            counter++;
+                    // Ataque Especial
+                    case 2:
+                        if (!jaUsouAtaqueEspecial) {
+                            inimigo.vidaAtual -= this.forca + this.getArmaPrincipal().getAtaqueEspecial();
+                            System.out.println("Dano do Ataque Especial: " + this.getArmaPrincipal().getAtaqueEspecial());
+                            jaUsouAtaqueEspecial = true;
+                            System.out.println("Ataque Especial! Vida do inimigo: " + inimigo.vidaAtual);
+                            skip = true;
+                        } else {
+                            System.out.println("O Ataque Especial já foi usado!\n");
                         }
-                    }
-
-                    // Verifica se a nova arraylist com consumiveis de combate está vazia
-                    if (consumivelCombates.isEmpty()) {
-                        System.out.println("Nenhum consumível disponível.");
                         break;
-                    }
+                    // Ataque Consumivel
+                    case 3:
+                        System.out.println("Lista de Consumíveis: ");
 
-                    System.out.println(counter+ ": Cancelar ataque e voltar ao menu anterior");
-                    System.out.print("Escolha uma opção: ");
-                    int opcaoConsumivel = scanner.nextInt();
+                        List<ConsumivelCombate> consumivelCombates = new ArrayList<>();
+                        int counter = 1;
 
-                    // Cancela o ataque se a opção neste caso for 4
-                    if (opcaoConsumivel == counter) {
-                        System.out.println("Ataque cancelado.");
+                        // Imprime todos os consumiveis de combate e guarda-os num novo arraylist
+                        for (Consumivel consumivel : this.getInventario()) {
+                            if (consumivel instanceof ConsumivelCombate) {
+                                System.out.print(counter + ": ");
+                                consumivel.mostrarDetalhes();
+                                consumivelCombates.add((ConsumivelCombate) consumivel);
+                                counter++;
+                            }
+                        }
+
+                        // Verifica se a nova arraylist com consumiveis de combate está vazia
+                        if (consumivelCombates.isEmpty()) {
+                            System.out.println("Nenhum consumível disponível.\n");
+                            break;
+                        }
+
+                        System.out.println("\n" + counter + ": Cancelar ataque e voltar ao menu anterior");
+                        System.out.print("Escolha uma opção: ");
+                        int opcaoConsumivel = scanner.nextInt();
+
+                        // Cancela o ataque se a opção neste caso for 4
+                        if (opcaoConsumivel == counter) {
+                            System.out.println("Ataque cancelado.");
+                            break;
+                        }
+
+                        // Executa o ataque
+                        if (opcaoConsumivel > 0 && opcaoConsumivel < counter) {
+                            ConsumivelCombate consumivel = consumivelCombates.get(opcaoConsumivel - 1);
+                            inimigo.vidaAtual -= consumivel.getAtaqueInstantaneo();
+                            this.getInventario().remove(consumivel);
+                            System.out.println("\nAtaque Consumível! Vida do inimigo: " + inimigo.vidaAtual);
+                            skip = true;
+                        } else {
+                            System.out.println("Opção Inválida. A voltar ao menu anterior.");
+                        }
                         break;
-                    }
 
-                    // Executa o ataque
-                    if (opcaoConsumivel > 0 && opcaoConsumivel < counter) {
-                        ConsumivelCombate consumivel = consumivelCombates.get(opcaoConsumivel-1);
-                        inimigo.vidaAtual -= consumivel.getAtaqueInstantaneo();
-                        this.getInventario().remove(consumivel);
-                        System.out.println("Ataque Consumível! Vida do inimigo: " + inimigo.vidaAtual);
-                    } else {
-                        System.out.println("Opção Inválida. A voltar ao menu anterior.");
-                    }
-                    break;
+                }
             }
 
             // Verifica se o inimigo foi derrotado

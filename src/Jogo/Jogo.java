@@ -1,9 +1,7 @@
 package Jogo;
 
 import Entidades.*;
-import Itens.ArmaPrincipal;
-import Itens.ConsumivelCombate;
-import Itens.Pocao;
+import Itens.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -81,13 +79,13 @@ public class Jogo {
             int pontosForca = scanner.nextInt();
 
             // Verifica se tem pontos disponiveis
-            while ((pontosForca / 5 ) > pontos) {
+            while (pontosForca > pontos) {
                 System.out.print("Pontos insuficientes. Por favor, introduza novamente: ");
-                pontosForca = scanner.nextInt();
+                pontosForca = scanner.nextInt() / 5;
             }
 
-            forca += pontosForca;
-            pontos -= (pontosForca / 5);
+            forca += (pontosForca / 5);
+            pontos -= pontosForca;
 
         }
 
@@ -129,11 +127,11 @@ public class Jogo {
         vendedor.adicionarItem(new Pocao("Poção de Agilidade", 15, todosHerois, 0, 5));
 
         // Armas Principais
-        vendedor.adicionarItem(new ArmaPrincipal("Espada Longa", 20, apenasCavaleiro, 10, 5));
-        vendedor.adicionarItem(new ArmaPrincipal("Arco de Caça", 15, apenasArqueiro, 7, 3));
-        vendedor.adicionarItem(new ArmaPrincipal("Varinha Mágica", 25, apenasFeiticeiro, 8, 10));
-        vendedor.adicionarItem(new ArmaPrincipal("Espada Curta", 10, apenasCavaleiro, 5, 3));
-        vendedor.adicionarItem(new ArmaPrincipal("Machado de Guerra", 30, apenasCavaleiro, 12, 8));
+        vendedor.adicionarItem(new ArmaPrincipal("Espada Longa", 20, apenasCavaleiro, 10, 50));
+        vendedor.adicionarItem(new ArmaPrincipal("Arco de Caça", 15, apenasArqueiro, 7, 30));
+        vendedor.adicionarItem(new ArmaPrincipal("Varinha Mágica", 25, apenasFeiticeiro, 8, 100));
+        vendedor.adicionarItem(new ArmaPrincipal("Espada Curta", 10, apenasCavaleiro, 5, 30));
+        vendedor.adicionarItem(new ArmaPrincipal("Machado de Guerra", 30, apenasCavaleiro, 12, 80));
 
         // Consumíveis de Combate
         vendedor.adicionarItem(new ConsumivelCombate("Bomba de Fogo", 10, todosHerois, 15));
@@ -180,12 +178,13 @@ public class Jogo {
 
         // Vale dos Mortos
         if (opcao == 1) {
+            ItemHeroi pocao = new Pocao("Poção misteriosa", 0, todosHerois, 25,0);
 
         }
 
         // Montanha das Virtudes
         if (opcao == 2) {
-            Entidade inimigo = new NPC("Inimigo " + 5, 50, 10, 10);
+            Entidade inimigo = new NPC("Inimigo ", 150, 10, 10);
 
             System.out.println("\nEntraste na Montanha das Virtudes!");
             Thread.sleep(1000);
@@ -193,9 +192,24 @@ public class Jogo {
             Thread.sleep(1000);
             System.out.println("Vais ter que lutar contra ele. Prepara-te!\n");
             Thread.sleep(2000);
-
             heroi.atacar((NPC) inimigo);
 
+            System.out.println(heroi.getNome() + " a tua vida está em " + heroi.getVidaAtual() + " e o teu ouro em " + heroi.getOuro() + ".");
+
+            if (heroi.atacar((NPC) inimigo)) {
+                System.out.println("Queres usar as poções?");
+                System.out.println("1. Sim");
+                System.out.println("2. Não");
+                int escolha = scanner.nextInt();
+
+                if (escolha == 1) {
+                    if (heroi.getInventario() instanceof Pocao) {
+                        for (Consumivel pocoes : heroi.getInventario()) {
+                            heroi.usarPocao();
+                        }
+                    }
+                }
+            }
 
         }
 
@@ -211,8 +225,5 @@ public class Jogo {
         // As salas com inimigos vão invocar o método atacar e verificar qual o vencedorr
         // Se o Heroi ganhar, continua o jogo, caso contrario o jogo acaba, no main apresenta uma mensagem de derrota
         // e pergunta se quer jogar novamente com um menu: jogar novamente com a mesma personagem, criar uma nova ou fechar o programa
-
-
-
     }
 }

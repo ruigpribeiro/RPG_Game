@@ -23,4 +23,8 @@ public abstract class Entidade {
     public String getNome() {
         return nome;
     }
+
+    public int getVidaAtual() {
+        return vidaAtual;
+    }
 }

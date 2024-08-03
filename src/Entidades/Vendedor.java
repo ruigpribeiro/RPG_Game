@@ -1,6 +1,7 @@
 package Entidades;
 
 import Itens.ArmaPrincipal;
+import Itens.Consumivel;
 import Itens.ItemHeroi;
 
 import java.util.ArrayList;
@@ -73,7 +74,10 @@ public class Vendedor {
 
         // Adiciona o ítem no inventário do herói
         System.out.println("\nUm novo item foi adicionado ao teu inventário, " + heroi.getNome() + "!");
-        heroi.setOuro(heroi.getOuro() - item.getPrecoMoedasOuro());
+        if (item instanceof Consumivel) {
+            heroi.getInventario().add((Consumivel) item);
+            heroi.setOuro(heroi.getOuro() - item.getPrecoMoedasOuro());
+        }
 
         // Remove o item da loja
         Thread.sleep(1000);
