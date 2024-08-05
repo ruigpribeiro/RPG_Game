@@ -1,4 +1,4 @@
-package Entidades;
+package RPG.Jogo.Entidades;
 
 public class NPC extends Entidade {
     private int ouro;

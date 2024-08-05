@@ -1,6 +1,6 @@
-package Entidades;
+package RPG.Jogo.Entidades;
 
-import Itens.*;
+import RPG.Jogo.Itens.*;
 
 import java.util.ArrayList;
 import java.util.List;

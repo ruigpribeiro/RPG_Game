@@ -1,10 +1,6 @@
-import Entidades.Heroi;
-import Entidades.Vendedor;
-import Itens.ConsumivelCombate;
-import Jogo.Jogo;
+package RPG.Jogo;
 
-import java.util.ArrayList;
-import java.util.List;
+import RPG.Jogo.Entidades.Heroi;
 
 public class Main {
     public static void main(String[] args) throws InterruptedException {

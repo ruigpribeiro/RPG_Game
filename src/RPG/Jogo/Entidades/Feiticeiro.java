@@ -1,18 +1,18 @@
-package Entidades;
+package RPG.Jogo.Entidades;
 
-import Itens.ArmaPrincipal;
-import Itens.Consumivel;
-import Itens.ConsumivelCombate;
+import RPG.Jogo.Itens.Consumivel;
+import RPG.Jogo.Itens.ConsumivelCombate;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class Arqueiro extends Heroi {
+public class Feiticeiro extends Heroi {
     private Scanner scanner;
 
-    public Arqueiro(String nome, int vidaMax, int forca, int ouro) {
+    public Feiticeiro(String nome, int vidaMax, int forca, int ouro) {
         super(nome, vidaMax, forca, ouro);
+        scanner = new Scanner(System.in);
     }
 
     @Override
@@ -21,7 +21,7 @@ public class Arqueiro extends Heroi {
 
         while (this.vidaAtual > 0 && inimigo.vidaAtual > 0) {
 
-            // Turno do Arqueiro para atacar
+            // Turno do Feiticeiro para atacar
             System.out.println("O feiticiero vai atacar...");
             int opcao;
 
@@ -107,10 +107,10 @@ public class Arqueiro extends Heroi {
 
             // Turno do Inimigo para atacar
             System.out.println("O inimigo vai atacar...");
-            this.vidaAtual -= (int) (inimigo.forca * 1.1);
+            this.vidaAtual -= inimigo.forca;
             System.out.println("Vida do Feiticeiro: " + this.vidaAtual);
 
-            // Verifica se o Arqueiro foi derrotado
+            // Verifica se o feiticeiro foi derrotado
             if (this.vidaAtual <= 0) {
                 System.out.println("O " + nome + " foi derrotado");
                 return false;

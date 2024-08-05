@@ -1,12 +1,9 @@
-package Jogo;
+package RPG.Jogo;
 
-import Entidades.*;
-import Itens.*;
+import RPG.Jogo.Entidades.*;
+import RPG.Jogo.Itens.*;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class Jogo {
     private Scanner scanner;
@@ -163,8 +160,9 @@ public class Jogo {
             vendedor.vender(heroi, opcao);
         }
 
-
-        System.out.println("\n************ Labirinto ************\n");
+        System.out.println("\n***********************************");
+        System.out.println("************ Labirinto ************");
+        System.out.println("***********************************\n");
         System.out.println("Encontraste 2 caminhos");
         System.out.println("1. Vale dos Mortos");
         System.out.println("2. Montanha das Virtudes");
@@ -178,7 +176,15 @@ public class Jogo {
 
         // Vale dos Mortos
         if (opcao == 1) {
+            System.out.println("Entraste no Vale dos Mortos, um lugar sombrio e desolado.");
+            System.out.println("O ar é frio e pesado, e uma névoa misteriosa cobre o chão.");
+
+            Random random = new Random();
+
+            System.out.println("Tu avistaste algo misterioso a brilhar no chão.");
             ItemHeroi pocao = new Pocao("Poção misteriosa", 0, todosHerois, 25,0);
+            System.out.println("Encontraste: " + pocao.getNome() + ". Esta poção pode curar " + ((Pocao) pocao).getVidaACurar()  + " pontos de vida.");
+
 
         }
 

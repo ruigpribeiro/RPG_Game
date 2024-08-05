@@ -1,4 +1,4 @@
-package Itens;
+package RPG.Jogo.Itens;
 
 import java.util.List;
 

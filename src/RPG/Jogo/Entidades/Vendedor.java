@@ -1,8 +1,8 @@
-package Entidades;
+package RPG.Jogo.Entidades;
 
-import Itens.ArmaPrincipal;
-import Itens.Consumivel;
-import Itens.ItemHeroi;
+import RPG.Jogo.Itens.ArmaPrincipal;
+import RPG.Jogo.Itens.Consumivel;
+import RPG.Jogo.Itens.ItemHeroi;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -69,12 +69,13 @@ public class Vendedor {
         // Verifica se o ítem é arma principal, se for substitui a arma principal do Herói
         if (item instanceof ArmaPrincipal) {
             heroi.setArmaPrincipal((ArmaPrincipal) item);
+            heroi.setOuro(heroi.getOuro() - item.getPrecoMoedasOuro());
             System.out.println("\nArma principal foi substituída por: " + item.getNome() + "!");
         }
 
         // Adiciona o ítem no inventário do herói
-        System.out.println("\nUm novo item foi adicionado ao teu inventário, " + heroi.getNome() + "!");
         if (item instanceof Consumivel) {
+            System.out.println("\nUm novo item foi adicionado ao teu inventário, " + heroi.getNome() + "!");
             heroi.getInventario().add((Consumivel) item);
             heroi.setOuro(heroi.getOuro() - item.getPrecoMoedasOuro());
         }

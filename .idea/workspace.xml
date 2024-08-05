@@ -6,11 +6,20 @@
   <component name="ChangeListManager">
     <list default="true" id="6ab47c59-f747-47ab-a743-146365655e03" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entidades/Cavaleiro.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entidades/Cavaleiro.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entidades/Entidade.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entidades/Entidade.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entidades/Heroi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entidades/Heroi.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entidades/Vendedor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entidades/Vendedor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Jogo/Jogo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Jogo/Jogo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entidades/Arqueiro.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/RPG/Jogo/Entidades/Arqueiro.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entidades/Cavaleiro.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/RPG/Jogo/Entidades/Cavaleiro.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entidades/Entidade.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/RPG/Jogo/Entidades/Entidade.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entidades/Feiticeiro.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/RPG/Jogo/Entidades/Feiticeiro.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entidades/Heroi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/RPG/Jogo/Entidades/Heroi.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entidades/NPC.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/RPG/Jogo/Entidades/NPC.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entidades/Vendedor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/RPG/Jogo/Entidades/Vendedor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Itens/ArmaPrincipal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/RPG/Jogo/Itens/ArmaPrincipal.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Itens/Consumivel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/RPG/Jogo/Itens/Consumivel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Itens/ConsumivelCombate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/RPG/Jogo/Itens/ConsumivelCombate.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Itens/ItemHeroi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/RPG/Jogo/Itens/ItemHeroi.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Itens/Pocao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/RPG/Jogo/Itens/Pocao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Jogo/Jogo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/RPG/Jogo/Jogo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/RPG/Jogo/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,7 +67,7 @@
 }</component>
   <component name="RunManager">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Main" />
+      <option name="MAIN_CLASS_NAME" value="RPG.Jogo.Main" />
       <module name="RPG_Game" />
       <method v="2">
         <option name="Make" enabled="true" />

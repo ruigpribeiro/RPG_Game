@@ -1,6 +1,4 @@
-package Itens;
-
-import Entidades.Heroi;
+package RPG.Jogo.Itens;
 
 import java.util.List;
 

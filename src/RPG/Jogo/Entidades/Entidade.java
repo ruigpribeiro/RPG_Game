@@ -1,4 +1,4 @@
-package Entidades;
+package RPG.Jogo.Entidades;
 
 public abstract class Entidade {
     protected String nome;

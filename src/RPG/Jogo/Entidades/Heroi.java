@@ -1,8 +1,8 @@
-package Entidades;
+package RPG.Jogo.Entidades;
 
-import Itens.ArmaPrincipal;
-import Itens.Consumivel;
-import Itens.Pocao;
+import RPG.Jogo.Itens.ArmaPrincipal;
+import RPG.Jogo.Itens.Consumivel;
+import RPG.Jogo.Itens.Pocao;
 
 import java.util.ArrayList;
 import java.util.List;
