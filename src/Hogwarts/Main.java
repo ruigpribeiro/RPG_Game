@@ -1,5 +1,8 @@
 package Hogwarts;
 
+import Hogwarts.Entidades.Herois.Heroi;
+import Hogwarts.Jogo.Jogo;
+
 public class Main {
     public static void main(String[] args) {
 
@@ -11,6 +14,8 @@ public class Main {
         - Hufflepuff: bonus para resiliencia e habilidades de cura
          */
 
-
+        Jogo jogo = new Jogo();
+        Heroi heroi = jogo.criarPersonagem();
+        jogo.labirintoMagico(heroi);
     }
 }

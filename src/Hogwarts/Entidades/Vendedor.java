@@ -1,10 +1,10 @@
 package Hogwarts.Entidades;
 
 import Hogwarts.Entidades.Herois.Heroi;
-import Hogwarts.Itens.ArtefatoMagico;
+import Hogwarts.Itens.ConsumivelCombate;
 import Hogwarts.Itens.ItemHeroi;
 import Hogwarts.Itens.Pocao;
-import Hogwarts.Itens.Varinha;
+import Hogwarts.Itens.ArmaPrincipal;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,6 +13,9 @@ import java.util.Random;
 public class Vendedor {
     private List<ItemHeroi> loja;
 
+    /**
+     * Método construtor
+     */
     public Vendedor() {
         loja = new ArrayList<>();
     }
@@ -42,9 +45,8 @@ public class Vendedor {
 
         if (heroi.getOuro() >= item.getPreco()) {
 
-            if (item instanceof Varinha) {
-                System.out.println("");
-                heroi.setVarinha((Varinha) item);
+            if (item instanceof ArmaPrincipal) {
+                heroi.setVarinha((ArmaPrincipal) item);
                 System.out.println("Uma nova Varinha para teu arsenal mágico!");
             }
 
@@ -53,7 +55,7 @@ public class Vendedor {
                 System.out.println("A poção foi adicionada ao teu inventário.");
             }
 
-            if (item instanceof ArtefatoMagico) {
+            if (item instanceof ConsumivelCombate) {
                 heroi.adicionarItemAoInventario(item);
                 System.out.println("O Artefato Mágico foi adicionado ao teu inventário.");
             }
@@ -93,4 +95,11 @@ public class Vendedor {
         }
     }
 
+    /**
+     * Adiciona um ítem à lista loja do vendedor
+     * @param item O ìtem a adicionar
+     */
+    public void adicionarItem(ItemHeroi item) {
+        loja.add(item);
+    }
 }
