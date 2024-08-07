@@ -4,7 +4,7 @@ import Hogwarts.Entidades.Herois.Heroi;
 import Hogwarts.Jogo.Jogo;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
 
         /*
         Escolher uma casa:
@@ -16,6 +16,6 @@ public class Main {
 
         Jogo jogo = new Jogo();
         Heroi heroi = jogo.criarPersonagem();
-        jogo.labirintoMagico(heroi);
+        jogo.labirintoHogwarts(heroi);
     }
 }

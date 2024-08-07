@@ -20,20 +20,23 @@ public abstract class Heroi extends Entidade {
 
     /**
      * Método construtor.
-     * @param nome Nome do herói
+     *
+     * @param nome    Nome do herói
      * @param vidaMax Vida Max do herói
-     * @param forca Força do herói
-     * @param nivel Nivel do herói
-     * @param ouro Moedas de ouro do herói
+     * @param forca   Força do herói
+     * @param nivel   Nivel do herói
+     * @param ouro    Moedas de ouro do herói
      */
     public Heroi(String nome, int vidaMax, int forca, int nivel, int ouro) {
         super(nome, vidaMax, forca);
         this.nivel = nivel;
         this.ouro = ouro;
+        inventario = new ArrayList<>();
     }
 
     /**
      * Adiciona um ítem ao inventário do herói
+     *
      * @param item O ítem a ser adicionado
      */
     public void adicionarItemAoInventario(ItemHeroi item) {

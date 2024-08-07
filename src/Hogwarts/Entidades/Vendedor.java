@@ -1,10 +1,7 @@
 package Hogwarts.Entidades;
 
 import Hogwarts.Entidades.Herois.Heroi;
-import Hogwarts.Itens.ConsumivelCombate;
-import Hogwarts.Itens.ItemHeroi;
-import Hogwarts.Itens.Pocao;
-import Hogwarts.Itens.ArmaPrincipal;
+import Hogwarts.Itens.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,68 +11,56 @@ public class Vendedor {
     private List<ItemHeroi> loja;
 
     /**
-     * Método construtor
+     * Método construtor.
      */
     public Vendedor() {
         loja = new ArrayList<>();
     }
 
     /**
-     * Vende ítens ao herói e adiciona-os ao seu inventário ou substítui caso seja varinha.
-     * @param heroi O herói
+     * Vende ítens ao herói e adiciona-os ao seu invetário ou substítui a sua arma principal
+     * @param heroi O herói que vai comprar
      * @param opcao A opção da lista
      */
     public void venderItem(Heroi heroi, int opcao) {
-
         ItemHeroi item = loja.get(opcao);
 
         // Verifica se o herói pode usar o ítem
         if (!item.getHeroisPermitidos().contains(heroi.getClass().getSimpleName())) {
-            System.out.println("Este ítem não é adequado para o teu herói.");
+            System.out.println("\nEste ítem não é adequado para o teu herói.\n");
             return;
         }
 
         // Verifica se o herói tem ouro suficiente para comprar o ítem
         if (heroi.getOuro() < item.getPreco()) {
-            System.out.println("Não tens moedas suficientes para comprar este ítem.");
+            System.out.println("\nNão tens moedas suficientes para comprar este ítem.\n");
             return;
         }
 
+        // Subtrai o ouro do herói
         heroi.setOuro(heroi.getOuro() - item.getPreco());
 
-        if (heroi.getOuro() >= item.getPreco()) {
-
-            if (item instanceof ArmaPrincipal) {
-                heroi.setVarinha((ArmaPrincipal) item);
-                System.out.println("Uma nova Varinha para teu arsenal mágico!");
-            }
-
-            if (item instanceof Pocao) {
-                heroi.adicionarItemAoInventario(item);
-                System.out.println("A poção foi adicionada ao teu inventário.");
-            }
-
-            if (item instanceof ConsumivelCombate) {
-                heroi.adicionarItemAoInventario(item);
-                System.out.println("O Artefato Mágico foi adicionado ao teu inventário.");
-            }
+        if (item instanceof ArmaPrincipal) {
+            heroi.setArmaPrincipal((ArmaPrincipal) item);
+            System.out.println("\nA varinha foi substítuida pela arma principal!");
+        } else if (item instanceof Pocao) {
+            heroi.adicionarItemAoInventario(item);
+            System.out.println("\nA poção foi adicionada ao teu inventário.");
+        } else if (item instanceof ConsumivelCombate) {
+            heroi.adicionarItemAoInventario(item);
+            System.out.println("\nO feitiço foi adicionado ao teu inventário.");
         }
-
-        // Imprime o ouro restante
-        System.out.println("Tens agora " + heroi.getOuro() + " moedas de ouro restantes.");
     }
 
-
     /**
-     * Imprime aleatóriamente 10 itens da loja.
+     * Imprime aleatoriamente 10 itens da loja.
      */
-    public void mostrarItensLoja() {
+    public List<Integer> mostrarItensLoja() {
         Random random = new Random();
 
         // Verifica se a loja tem pelo menos 10 ítens
         if (loja.size() < 10) {
             System.out.println("A loja tem menos do que 10 itens! Adiciona mais.");
-            return;
         }
 
         List<Integer> indicesUsados = new ArrayList<>();
@@ -84,20 +69,27 @@ public class Vendedor {
         while (count < 10) {
             int index = random.nextInt(loja.size());
 
-            // Verifica se ainda não está na lista de índices usados
+            // Adiciona o índice à lista de índices usados, se ainda não estiver nela
             if (!indicesUsados.contains(index)) {
                 indicesUsados.add(index);
-                System.out.print(index + ": ");
-                loja.get(index).mostrarDetalhes();
-                System.out.println();
                 count++;
             }
         }
+
+        // Imrpime os itens
+        for (int i = 0; i < indicesUsados.size(); i++) {
+            System.out.print((i + 1) + ": ");
+            loja.get(indicesUsados.get(i)).mostrarDetalhes();
+            System.out.println();
+        }
+
+        return indicesUsados;
     }
 
     /**
      * Adiciona um ítem à lista loja do vendedor
-     * @param item O ìtem a adicionar
+     *
+     * @param item O ítem a adicionar
      */
     public void adicionarItem(ItemHeroi item) {
         loja.add(item);

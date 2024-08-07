@@ -17,7 +17,7 @@ public class ArmaPrincipal extends ItemHeroi {
     @Override
     public void mostrarDetalhes() {
         super.mostrarDetalhes();
-        System.out.print(" Ataque: " + ataque + ", Ataque Especial: " + ataqueEspecial);
+        System.out.print(", Ataque: " + ataque + ", Ataque Especial: " + ataqueEspecial);
     }
 
     public int getAtaque() {
