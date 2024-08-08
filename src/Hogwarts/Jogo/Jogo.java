@@ -4,15 +4,13 @@ import Hogwarts.Entidades.Herois.HarryPotter;
 import Hogwarts.Entidades.Herois.HermioneGranger;
 import Hogwarts.Entidades.Herois.Heroi;
 import Hogwarts.Entidades.Herois.RonWeasley;
+import Hogwarts.Entidades.Inimigos.NPC;
 import Hogwarts.Entidades.Vendedor;
 import Hogwarts.Itens.ArmaPrincipal;
 import Hogwarts.Itens.ConsumivelCombate;
 import Hogwarts.Itens.Pocao;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class Jogo {
     private Scanner scanner;
@@ -60,9 +58,9 @@ public class Jogo {
         // Verifica se os pontos foram totalmente distribuidos
         while (vida + forca != pontosCriacao) {
             System.out.println("Pontos de distribuição incorretos!");
-            System.out.println("Pontos de vida: ");
+            System.out.print("Pontos de vida: ");
             vida = scanner.nextInt();
-            System.out.println("Força: ");
+            System.out.print("Força: ");
             forca = scanner.nextInt();
         }
 
@@ -70,13 +68,13 @@ public class Jogo {
         Heroi heroi = null;
         switch (opcaoHeroi) {
             case 1:
-                heroi = new HarryPotter("Harry Potter", vida, forca, 1, ouroInicial);
+                heroi = new HarryPotter("Harry Potter", vida, (forca / 5), 1, ouroInicial);
                 break;
             case 2:
-                heroi = new HermioneGranger("Hermione Granger", vida, forca, 1, ouroInicial);
+                heroi = new HermioneGranger("Hermione Granger", vida, (forca / 5), 1, ouroInicial);
                 break;
             case 3:
-                heroi = new RonWeasley("Ron Weasley", vida, forca, 1, ouroInicial);
+                heroi = new RonWeasley("Ron Weasley", vida, (forca / 5), 1, ouroInicial);
                 break;
         }
 
@@ -173,7 +171,7 @@ public class Jogo {
             // Sala Inicial
             salaEntradaHogwarts(heroi, vendedor);
 
-            System.out.println("Escolha a próxima sala:");
+            System.out.println("\nEscolha a próxima sala:");
             System.out.println("1. Floresta Proíbida");
             System.out.println("2. Sala das Poções");
             System.out.print("Opção: ");
@@ -181,9 +179,11 @@ public class Jogo {
 
             switch (opcao) {
                 case 1:
-                    salaFlorestaProibida();
+                    salaFlorestaProibida(heroi, todosPermitidos);
+                    break;
                 case 2:
-                    salaPocoes();
+                    salaPocoes(heroi, todosPermitidos);
+                    break;
             }
 
         }
@@ -219,11 +219,129 @@ public class Jogo {
         }
     }
 
-    public void salaFlorestaProibida() {
+    public void salaFlorestaProibida(Heroi heroi, List<String> heroisPermitidos) {
+        // Mensagem de entrada
+        System.out.println("\nEntraste na Floresta Proibida, um lugar sombrio e cheio de criaturas perigosas.");
+
+        Random random = new Random();
+        int rand = random.nextInt(2);
+
+        if (rand == 0) {
+            System.out.println("Um Centauro apareceu à tua frente. Ele avisou-te sobre o perigo e ofereceu-te uma poção!");
+            // Adiciona uma poção ao inventário
+            Pocao pocao = new Pocao("Poção de Vida", 0, heroisPermitidos, 15, 5);
+            heroi.adicionarItemAoInventario(pocao);
+        } else {
+            System.out.println("Foste atacado por uma Acromântula! Prepara-te para lutar!");
+            NPC acromantula = new NPC("Acromântula", 100, 20, 10);
+            heroi.atacar(acromantula);
+        }
+
+        // Mensagem de saída
+        System.out.println("\nDepois de enfrentar os perigos da Floresta Proibida, " + heroi.getNome() + " vai continuar a sua viagem.");
+
+        // Escolha das próximas salas
+        System.out.println("\nEscolha a próxima sala:");
+        System.out.println("1. Câmara dos Segredos");
+        System.out.println("2. Biblioteca");
+        System.out.println("3. Sala de Requisitos");
+        System.out.print("Opção: ");
+        int opcao = scanner.nextInt();
+
+        switch (opcao) {
+            case 1:
+                salaCamaraDosSegredos(heroi);
+                break;
+            case 2:
+                salaBiblioteca(heroi, heroisPermitidos);
+                break;
+            case 3:
+                salaRequisitos(heroi);
+                break;
+        }
 
     }
 
-    public void salaPocoes() {
+    private void salaRequisitos(Heroi heroi) {
+        // Mensagem de entrada
+        System.out.println("\nEntraste na Sala de Requisitos. Ela molda-se às tuas necessidades...");
+
+        // Totem Mágico com efeitos aleatórios
+        System.out.println("No centro da sala, um Totem Mágico brilha intensamente. Ele pode conceder-te ouro ou causar-te dano.");
+
+        Random random = new Random();
+        int efeito = random.nextInt(2);
+
+        if (efeito == 0) {
+            int ouroGanho = random.nextInt(50) + 1;
+            heroi.setOuro(heroi.getOuro() + ouroGanho);
+            System.out.println("O Totem concedeu-te " + ouroGanho + " moedas de ouro!");
+        } else {
+            int danoRecebido = random.nextInt(30) + 1;
+            heroi.setVidaAtual(heroi.getVidaAtual() - danoRecebido);
+            System.out.println("O Totem lançou-te uma maldição! Perdeste" + danoRecebido + " pontos de vida.");
+        }
+
+        // Verifica se o herói ainda está vivo
+        if (heroi.getVidaAtual() <= 0) {
+            System.out.println("Foste derrotado pela maldição do Totem. O jogo terminou.");
+        }
+    }
+
+    private void salaBiblioteca(Heroi heroi, List<String> heroisPermitidos) {
+        // Mensagem de entrada
+        System.out.println("\nEntraste na Biblioteca de Hogwarts. Entre as prateleiras empoeiradas, avistaste algo a brilhar.");
+
+        // Encontrar itens perdidos
+        Pocao pocao = new Pocao("Poção de Vida", 0, heroisPermitidos, 15, 5);
+        ArmaPrincipal varinhaFenix = new ArmaPrincipal("Varinha de Fênix", 0, heroisPermitidos, 30, 50);
+
+        System.out.println("Encontraste uma Poção de Vida e a Varinha de Fênix perdida!");
+        heroi.adicionarItemAoInventario(pocao);
+        heroi.setArmaPrincipal(varinhaFenix);
+
+        System.out.println("Os itens foram adicionados ao teu inventário.");
+    }
+
+    private void salaCamaraDosSegredos(Heroi heroi) {
+        // Mensagem de entrada
+        System.out.println("\nEntraste na Câmara dos Segredos. O ambiente é frio e o ar está denso com uma magia antiga.");
+
+        // Enfrentar um inimigo
+        NPC basilisco = new NPC("Basilisco", 150, 25, 25);
+        System.out.println("O Basilisco emerge das sombras! Prepara-te para lutar!");
+        heroi.atacar(basilisco);
+
+        if (heroi.getVidaAtual() > 0) {
+            System.out.println("Derrotaste o Basilisco! A Câmara dos Segredos está segura... por enquanto.");
+        } else {
+            System.out.println("Foste derrotado pelo Basilisco. O jogo terminou.");
+            // Finalizar ou reiniciar o jogo
+        }
+    }
+
+    public void salaPocoes(Heroi heroi, List<String> heroisPermitidos) {
+        // Mensagem de entrada
+        System.out.println("\nEntraste na Sala das Poções, onde o Professor Snape está à tua espera.");
+
+        // Snape oferece uma poção em troca de ouro
+        System.out.println("Snape oferece-te uma Poção de Vida por 10 moedas de ouro.");
+        System.out.print("Queres comprar? (1 para Sim, 0 para Não): ");
+        int opcao = scanner.nextInt();
+
+        if (opcao == 1 && heroi.getOuro() >= 10) {
+            heroi.setOuro(heroi.getOuro() - 10);
+            Pocao pocao = new Pocao("Poção de Vida", 10, heroisPermitidos, 15, 5);
+            heroi.adicionarItemAoInventario(pocao);
+            System.out.println("Compraste a Poção de Vida.");
+        } else if (opcao == 1) {
+            System.out.println("Não tens ouro suficiente para comprar a poção.");
+        } else {
+            System.out.println("Recusaste a oferta do Professor Snape.");
+        }
+
+        // Mensagem de saída
+        System.out.println("\nDepois de explorar a Sala das Poções, " + heroi.getNome() + " vai continuar a sua viagem.");
 
     }
 

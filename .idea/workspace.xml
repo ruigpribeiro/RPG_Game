@@ -8,29 +8,8 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Hogwarts/Entidades/Herois/HarryPotter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Hogwarts/Entidades/Herois/HarryPotter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Hogwarts/Entidades/Herois/HermioneGranger.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Hogwarts/Entidades/Herois/HermioneGranger.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Hogwarts/Entidades/Herois/Heroi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Hogwarts/Entidades/Herois/Heroi.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Hogwarts/Entidades/Herois/RonWeasley.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Hogwarts/Entidades/Herois/RonWeasley.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Hogwarts/Entidades/Vendedor.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Hogwarts/Itens/ArmaPrincipal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Hogwarts/Itens/ArmaPrincipal.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Hogwarts/Itens/ConsumivelCombate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Hogwarts/Itens/ConsumivelCombate.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Hogwarts/Itens/ItemHeroi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Hogwarts/Itens/ItemHeroi.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Hogwarts/Itens/Pocao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Hogwarts/Itens/Pocao.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Hogwarts/Jogo/Jogo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Hogwarts/Jogo/Jogo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Hogwarts/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Hogwarts/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/RPG/Jogo/Entidades/Arqueiro.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/RPG/Jogo/Entidades/Cavaleiro.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/RPG/Jogo/Entidades/Entidade.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/RPG/Jogo/Entidades/Feiticeiro.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/RPG/Jogo/Entidades/Heroi.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/RPG/Jogo/Entidades/NPC.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/RPG/Jogo/Entidades/Vendedor.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/RPG/Jogo/Itens/ArmaPrincipal.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/RPG/Jogo/Itens/Consumivel.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/RPG/Jogo/Itens/ConsumivelCombate.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/RPG/Jogo/Itens/ItemHeroi.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/RPG/Jogo/Itens/Pocao.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/RPG/Jogo/Jogo.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/RPG/Jogo/Main.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,29 +41,29 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.Hogwarts.Main.executor": "Run",
-    "Application.Main.executor": "Run",
-    "Downloaded.Files.Path.Enabled": "false",
-    "Repository.Attach.Annotations": "false",
-    "Repository.Attach.JavaDocs": "false",
-    "Repository.Attach.Sources": "false",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "master",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/Rui Ribeiro/Desktop/RPG_Game",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.Hogwarts.Main.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Rui Ribeiro/Desktop/RPG_Game&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="RPG.Jogo.Main" />

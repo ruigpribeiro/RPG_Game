@@ -6,6 +6,7 @@ import Hogwarts.Itens.ItemHeroi;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class HermioneGranger extends Heroi {
 
@@ -20,6 +21,7 @@ public class HermioneGranger extends Heroi {
      */
     public HermioneGranger(String nome, int vidaMax, int forca, int nivel, int ouro) {
         super(nome, vidaMax, forca, nivel, ouro);
+        scanner = new Scanner(System.in);
     }
 
     @Override
@@ -28,77 +30,84 @@ public class HermioneGranger extends Heroi {
 
         while (this.vidaAtual > 0 && inimigo.getVidaAtual() > 0) {
 
-            // Escolha do tipo de ataque do herói
-            System.out.println("Escolha o tipo de ataque:");
-            System.out.println("1. Ataque Normal");
-            System.out.println("2. Ataque Especial");
-            System.out.println("3. Ataque Consumível");
-            System.out.print("Escolha o tipo de ataque: ");
-            int opcao = scanner.nextInt();
+            boolean jaEscolheu = false;
 
-            int dano = 0;
+            while (!jaEscolheu) {
+                // Escolha do tipo de ataque do herói
+                System.out.println("Escolha o tipo de ataque:");
+                System.out.println("1. Ataque Normal");
+                System.out.println("2. Ataque Especial");
+                System.out.println("3. Ataque Consumível");
+                System.out.print("Escolha o tipo de ataque: ");
+                int opcao = scanner.nextInt();
 
-            switch (opcao) {
-                case 1:
-                    // Ataque Normal
-                    dano = this.forca + this.armaPrincipal.getAtaque();
-                    System.out.println(this.nome + " usou um Ataque Normal! Dano: " + dano);
-                    inimigo.setVidaAtual(inimigo.getVidaAtual() - dano);
-                    break;
+                int dano = 0;
 
-                case 2:
-                    // Ataque Especial
-                    if (!ataqueEspecialUsado) {
-                        dano = this.forca + this.armaPrincipal.getAtaqueEspecial();
-                        System.out.println(this.nome + " usou um Ataque Especial! Dano: " + dano);
+                switch (opcao) {
+                    case 1:
+                        // Ataque Normal
+                        dano = this.forca + this.armaPrincipal.getAtaque();
+                        System.out.println(this.nome + " usou um Ataque Normal! Dano: " + dano);
                         inimigo.setVidaAtual(inimigo.getVidaAtual() - dano);
-                        ataqueEspecialUsado = true;
-                    } else {
-                        System.out.println("O Ataque Especial já foi usado neste combate.");
-                    }
-                    break;
+                        jaEscolheu = true;
+                        break;
 
-                case 3:
-                    // Usar Consumível
-                    List<Integer> indicesConsumivelCombate = new ArrayList<>();
-                    for (int i = 0; i < inventario.size(); i++) {
-                        ItemHeroi item = inventario.get(i);
-                        if (item instanceof ConsumivelCombate) {
-                            indicesConsumivelCombate.add(i);
+                    case 2:
+                        // Ataque Especial
+                        if (!ataqueEspecialUsado) {
+                            dano = this.forca + this.armaPrincipal.getAtaqueEspecial();
+                            System.out.println(this.nome + " usou um Ataque Especial! Dano: " + dano);
+                            inimigo.setVidaAtual(inimigo.getVidaAtual() - dano);
+                            ataqueEspecialUsado = true;
+                            jaEscolheu = true;
+                        } else {
+                            System.out.println("O Ataque Especial já foi usado neste combate.");
                         }
-                    }
+                        break;
 
-                    if (indicesConsumivelCombate.isEmpty()) {
-                        System.out.println("Nenhum consumível disponível.");
+                    case 3:
+                        // Usar Consumível
+                        List<Integer> indicesConsumivelCombate = new ArrayList<>();
+                        for (int i = 0; i < inventario.size(); i++) {
+                            ItemHeroi item = inventario.get(i);
+                            if (item instanceof ConsumivelCombate) {
+                                indicesConsumivelCombate.add(i);
+                            }
+                        }
+
+                        if (indicesConsumivelCombate.isEmpty()) {
+                            System.out.println("Nenhum consumível disponível.");
+                            continue;
+                        }
+
+                        int count = 1;
+                        for (Integer indice : indicesConsumivelCombate) {
+                            System.out.print(count + ": ");
+                            inventario.get(indice).mostrarDetalhes();
+                            count++;
+                        }
+
+                        System.out.print("Escolha um consumível (ou 0 para cancelar): ");
+                        int opcaoConsumivel = scanner.nextInt();
+
+                        if (opcaoConsumivel > 0 && opcaoConsumivel <= indicesConsumivelCombate.size()) {
+                            int indiceEscolhido = indicesConsumivelCombate.get(opcaoConsumivel - 1);
+                            ConsumivelCombate consumivel = (ConsumivelCombate) inventario.get(indiceEscolhido);
+                            dano = consumivel.getAtaqueInstantaneo();
+                            System.out.println(this.nome + " usou " + consumivel.getNome() + " causando " + dano + " de dano.");
+                            inimigo.setVidaAtual(inimigo.getVidaAtual() - dano);
+                            inventario.remove(indiceEscolhido); // Remove do inventário o consumível usado
+                        } else {
+                            System.out.println("Ação cancelada.");
+                            continue;
+                        }
+                        jaEscolheu = true;
+                        break;
+
+                    default:
+                        System.out.println("Opção inválida. Tente novamente.");
                         continue;
-                    }
-
-                    int count = 1;
-                    for (Integer indice : indicesConsumivelCombate) {
-                        System.out.print(count + ": ");
-                        inventario.get(indice).mostrarDetalhes();
-                        count++;
-                    }
-
-                    System.out.print("Escolha um consumível (ou 0 para cancelar): ");
-                    int opcaoConsumivel = scanner.nextInt();
-
-                    if (opcaoConsumivel > 0 && opcaoConsumivel <= indicesConsumivelCombate.size()) {
-                        int indiceEscolhido = indicesConsumivelCombate.get(opcaoConsumivel - 1);
-                        ConsumivelCombate consumivel = (ConsumivelCombate) inventario.get(indiceEscolhido);
-                        dano = consumivel.getAtaqueInstantaneo();
-                        System.out.println(this.nome + " usou " + consumivel.getNome() + " causando " + dano + " de dano.");
-                        inimigo.setVidaAtual(inimigo.getVidaAtual() - dano);
-                        inventario.remove(indiceEscolhido); // Remove do inventário o consumível usado
-                    } else {
-                        System.out.println("Ação cancelada.");
-                        continue;
-                    }
-                    break;
-
-                default:
-                    System.out.println("Opção inválida. Tente novamente.");
-                    continue;
+                }
             }
 
             // Verifica se o inimigo foi derrotado
