@@ -4,19 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6ab47c59-f747-47ab-a743-146365655e03" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Hogwarts/Entidades/Herois/HarryPotter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Hogwarts/Entidades/Herois/HarryPotter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Hogwarts/Entidades/Herois/HermioneGranger.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Hogwarts/Entidades/Herois/HermioneGranger.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Hogwarts/Entidades/Herois/Heroi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Hogwarts/Entidades/Herois/Heroi.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Hogwarts/Entidades/Herois/RonWeasley.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Hogwarts/Entidades/Herois/RonWeasley.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Hogwarts/Entidades/Inimigos/BellatrixLestrange.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Hogwarts/Entidades/Inimigos/DracoMalfoy.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Hogwarts/Entidades/Inimigos/NPC.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Hogwarts/Entidades/NPC.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Hogwarts/Entidades/Inimigos/Voldemort.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Hogwarts/Jogo/Jogo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Hogwarts/Jogo/Jogo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Hogwarts/Jogo/Sala.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Hogwarts/Jogo/Sala.java" afterDir="false" />
-    </list>
+    <list default="true" id="6ab47c59-f747-47ab-a743-146365655e03" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
