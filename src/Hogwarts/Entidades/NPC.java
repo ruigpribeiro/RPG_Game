@@ -1,6 +1,4 @@
-package Hogwarts.Entidades.Inimigos;
-
-import Hogwarts.Entidades.Entidade;
+package Hogwarts.Entidades;
 
 public class NPC extends Entidade {
     private int ouro;

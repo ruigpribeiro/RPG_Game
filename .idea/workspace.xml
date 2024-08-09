@@ -8,8 +8,14 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Hogwarts/Entidades/Herois/HarryPotter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Hogwarts/Entidades/Herois/HarryPotter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Hogwarts/Entidades/Herois/HermioneGranger.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Hogwarts/Entidades/Herois/HermioneGranger.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Hogwarts/Entidades/Herois/Heroi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Hogwarts/Entidades/Herois/Heroi.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Hogwarts/Entidades/Herois/RonWeasley.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Hogwarts/Entidades/Herois/RonWeasley.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Hogwarts/Entidades/Inimigos/BellatrixLestrange.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Hogwarts/Entidades/Inimigos/DracoMalfoy.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Hogwarts/Entidades/Inimigos/NPC.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Hogwarts/Entidades/NPC.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Hogwarts/Entidades/Inimigos/Voldemort.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Hogwarts/Jogo/Jogo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Hogwarts/Jogo/Jogo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Hogwarts/Jogo/Sala.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Hogwarts/Jogo/Sala.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,7 +34,7 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProblemsViewState">
-    <option name="selectedTabId" value="DEPENDENCY_CHECKER_PROBLEMS_TAB" />
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 6
@@ -64,7 +70,20 @@
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.Hogwarts.Main">
+    <configuration name="Hogwarts.Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Hogwarts.Main" />
+      <module name="RPG_Game" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="Hogwarts.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="RPG.Jogo.Main" />
       <module name="RPG_Game" />
@@ -74,6 +93,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Hogwarts.Main" />
         <item itemvalue="Application.Main" />
       </list>
     </recent_temporary>

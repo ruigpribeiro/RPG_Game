@@ -1,6 +1,6 @@
 package Hogwarts.Entidades.Herois;
 
-import Hogwarts.Entidades.Inimigos.NPC;
+import Hogwarts.Entidades.NPC;
 import Hogwarts.Itens.ConsumivelCombate;
 import Hogwarts.Itens.ItemHeroi;
 
@@ -84,6 +84,7 @@ public class HermioneGranger extends Heroi {
                         for (Integer indice : indicesConsumivelCombate) {
                             System.out.print(count + ": ");
                             inventario.get(indice).mostrarDetalhes();
+                            System.out.println();
                             count++;
                         }
 

@@ -1,6 +1,6 @@
 package Hogwarts.Jogo;
 
-import Hogwarts.Entidades.Inimigos.NPC;
+import Hogwarts.Entidades.NPC;
 import Hogwarts.Entidades.Vendedor;
 import Hogwarts.Itens.ItemHeroi;
 

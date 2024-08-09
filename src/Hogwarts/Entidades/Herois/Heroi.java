@@ -1,7 +1,7 @@
 package Hogwarts.Entidades.Herois;
 
 import Hogwarts.Entidades.Entidade;
-import Hogwarts.Entidades.Inimigos.NPC;
+import Hogwarts.Entidades.NPC;
 import Hogwarts.Itens.Consumivel;
 import Hogwarts.Itens.ItemHeroi;
 import Hogwarts.Itens.Pocao;
