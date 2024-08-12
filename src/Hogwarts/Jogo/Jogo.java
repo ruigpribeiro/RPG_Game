@@ -36,8 +36,6 @@ public class Jogo {
      * @return
      */
     public Heroi criarPersonagem() {
-
-
         // Escolha de herói
         Scanner scanner = new Scanner(System.in);
         System.out.println(YELLOW + "*** Escolhe o teu herói ***" + RESET);
@@ -141,162 +139,150 @@ public class Jogo {
         // Todos começam com uma varinha básica grátis
         heroi.setArmaPrincipal(new ArmaPrincipal("Varinha de Aprendiz", 0, todosPermitidos, 10, 20));
 
-        // Definir cores ANSI
-        final String ANSI_RESET = "\u001B[0m";
-        final String ANSI_RED = "\u001B[31m";
-        final String ANSI_GREEN = "\u001B[32m";
-        final String ANSI_YELLOW = "\u001B[33m";
-        final String ANSI_BLUE = "\u001B[34m";
-        final String ANSI_PURPLE = "\u001B[35m";
-        final String ANSI_CYAN = "\u001B[36m";
-        final String ANSI_WHITE = "\u001B[37m";
-
 
         boolean jogar = true;
         while (jogar) {
             // Sala de Entrada de Hogwarts
             salaEntradaHogwarts(heroi, vendedor);
 
-            System.out.println(ANSI_YELLOW + "\nEscolhe a próxima sala:" + ANSI_RESET);
-            System.out.println(ANSI_BLUE + "1. Floresta Proibida" + ANSI_RESET);
-            System.out.println(ANSI_BLUE + "2. Sala das Poções" + ANSI_RESET);
-            System.out.print(ANSI_YELLOW + "Opção: " + ANSI_RESET);
-            int opcao = scanner.nextInt();
+            System.out.println(YELLOW + "\nEscolhe um labirinto para começar a tua aventura:" + RESET);
+            System.out.println(BLUE + "1. Pedra Filosofal" + RESET);
+            System.out.println(BLUE + "2. Câmara dos Segredos" + RESET);
+            System.out.println(BLUE + "3. Prisioneiro de Azkaban" + RESET);
+            System.out.println(BLUE + "4. Cálice de Fogo" + RESET);
+            System.out.println(BLUE + "5. Ordem da Fénix" + RESET);
+            System.out.println(BLUE + "6. Príncipe Misterioso" + RESET);
+            System.out.println(BLUE + "7. Talismãs da Morte" + RESET);
+            System.out.print(YELLOW + "Opção: " + RESET);
+            int opcaoFilme = scanner.nextInt();
 
-            switch (opcao) {
+            // Encaminha cada escolha para a sua sala
+            switch (opcaoFilme) {
                 case 1:
-                    salaFlorestaProibida(heroi, todosPermitidos);
+                    pedraFilosofal(heroi);
                     break;
                 case 2:
-                    salaPocoes(heroi, todosPermitidos);
+                    //camaraDosSegredos(heroi);
+                    break;
+                case 3:
+                    //prisioneiroAzkaban(heroi);
+                    break;
+                case 4:
+                    //caliceFogo(heroi);
+                    break;
+                case 5:
+                    //ordemFenix(heroi);
+                    break;
+                case 6:
+                    //principeMisterioso(heroi);
+                    break;
+                case 7:
+                    //talismasMorte(heroi);
                     break;
                 default:
-                    System.out.println(ANSI_RED + "\nOpção inválida. Tente novamente." + ANSI_RESET);
-                    continue;
+                    System.out.println("Opção inválida.");
             }
 
-            /*
-            System.out.println(ANSI_GREEN + "\nDeseja continuar jogando?" + ANSI_RESET);
-            System.out.println(ANSI_YELLOW + "1. Sim" + ANSI_RESET);
-            System.out.println(ANSI_RED + "2. Não" + ANSI_RESET);
-            System.out.print(ANSI_YELLOW + "Opção: " + ANSI_RESET);
+
+            System.out.println(GREEN + "\nDeseja continuar jogando?" + RESET);
+            System.out.println(YELLOW + "1. Sim" + RESET);
+            System.out.println(RED + "2. Não" + RESET);
+            System.out.print(YELLOW + "Opção: " + RESET);
             int continuar = scanner.nextInt();
             if (continuar == 2) {
                 jogar = false;
-                System.out.println(ANSI_GREEN + "Obrigado por jogar!" + ANSI_RESET);
-            }*/
-
-            // Escolhas após a Floresta Proíbida
-            if (opcao == 1) {
-                System.out.println("\nEscolha a próxima sala:");
-                System.out.println("1. Câmara dos Segredos");
-                System.out.println("2. Biblioteca");
-                System.out.println("3. Sala de Requisitos");
-                System.out.print("Opção: ");
-                opcao = scanner.nextInt();
-
-                switch (opcao) {
-                    case 1:
-                        salaCamaraDosSegredos(heroi);
-                        break;
-                    case 2:
-                        salaBiblioteca(heroi, todosPermitidos);
-                        break;
-                    case 3:
-                        salaRequisitos(heroi);
-                        break;
-                    default:
-                        System.out.println("\nOpção inválida. Tente novamente.");
-                        continue;
-                }
-
-                // Escolhas após a Câmara dos Segredos
-                if (opcao == 1) {
-                    System.out.println("\nEscolha a próxima sala:");
-                    System.out.println("1. Sala de Requisitos");
-                    System.out.print("Opção: ");
-                    opcao = scanner.nextInt();
-                }
-
-                // Escolhas após a Biblioteca
-                if (opcao == 2) {
-                    System.out.println("\nEscolha a próxima sala:");
-                    System.out.println("1. Torre de Astronomia");
-                    System.out.print("Opção: ");
-                    opcao = scanner.nextInt();
-                }
-
-                // Escolhas após a Sala dos Requisitos
-                if (opcao == 3) {
-                    System.out.println("\nEscolha a próxima sala:");
-                    System.out.println("1. Grifinória ");
-                    System.out.print("Opção: ");
-                    opcao = scanner.nextInt();
-                }
-            }
-
-            // Escolhas após a Sala das Poções
-            if (opcao == 2) {
-                System.out.println("\nEscolha a próxima sala:");
-                System.out.println("1. Masmorras");
-                System.out.println("2. Salão Principal");
-                System.out.print("Opção: ");
-                opcao = scanner.nextInt();
-
-                switch (opcao) {
-                    case 1:
-                        salaMasmorras(heroi);
-                        break;
-                    case 2:
-                        salaSalaoPrincipal(heroi, vendedor);
-                        break;
-                    default:
-                        System.out.println("\nOpção inválida. Tente novamente.");
-                        continue;
-                }
-
-                // Escolhas após o Salão Principal
-                if (opcao == 2) {
-                    System.out.println("\nEscolha a próxima sala:");
-                    System.out.println("1. Estufa de Herbologia");
-                    System.out.print("Opção: ");
-                    opcao = scanner.nextInt();
-
-                    switch (opcao) {
-                        case 1:
-                            salaEstufaHerbologia(heroi);
-                            break;
-                        default:
-                            System.out.println("\nOpção inválida. Tente novamente.");
-                            continue;
-                    }
-
-                    // Escolhas após a Estufa de Herbologia
-                    System.out.println("\nEscolha a próxima sala:");
-                    System.out.println("1. Sala da Corvinal");
-                    System.out.print("Opção: ");
-                    opcao = scanner.nextInt();
-
-                    switch (opcao) {
-                        case 1:
-                            salaCorvinal(heroi);
-                            break;
-                        default:
-                            System.out.println("\nOpção inválida. Tente novamente.");
-                            continue;
-                    }
-                }
+                System.out.println(GREEN + "Obrigado por jogar!" + RESET);
             }
         }
     }
 
+    private void pedraFilosofal(Heroi heroi) throws InterruptedException {
+        System.out.println("\nEscolheste: Pedra Filosofal");
+        salaFlorestaProibida(heroi);
+    }
 
-    /**
-     * Sala inicial onde o vendedor mostra uma lista de ítens dísponivel para comprar
-     *
-     * @param heroi    O herói
-     * @param vendedor O vendedor
-     */
+    private void salaFlorestaProibida(Heroi heroi) {
+        System.out.println("\n** Sala 1: Floresta Proibida **");
+        System.out.println("Escolhe um caminho:");
+        System.out.println("1. Explorar a floresta.");
+        System.out.println("2. Seguir uma trilha de pegadas.");
+
+        int escolha = scanner.nextInt();
+        if (escolha == 1) {
+            System.out.println("Encontraste um centauro que avisa-te sobre o perigo que corres.");
+            // Adicionar algum efeito ou interação.
+        } if (escolha == 2) {
+            System.out.println("Encontraste o Voldemort a beber sangue de unicórnio!");
+            NPC voldemort = new NPC("Voldemort", 100, 20, 15);
+            heroi.atacar(voldemort);
+        } else {
+            System.out.println("Escolha inválida.");
+            salaFlorestaProibida(heroi);
+        }
+
+        salaXadrezGigante(heroi);
+    }
+
+    private void salaXadrezGigante(Heroi heroi){
+        System.out.println("\n** Sala 2: Sala do Xadrez Gigante **");
+        System.out.println("Escolhe um caminho:");
+        System.out.println("1. Participar no jogo de xadrez gigante.");
+        System.out.println("2. Procurar um atalho.");
+
+        int escolha = scanner.nextInt();
+        if (escolha == 1) {
+            System.out.println("Estás em um duelo de xadrez! Derrota o adversário.");
+            // Implementar lógica do duelo.
+        } else if (escolha == 2) {
+            System.out.println("Encontraste peças guardiãs menores, prepare-te para lutar!");
+            // Implementar batalha contra peças menores.
+        } else {
+            System.out.println("Escolha inválida.");
+            salaXadrezGigante(heroi);
+        }
+
+        salaEnigmaPocoes(heroi);
+    }
+
+    private void salaEnigmaPocoes(Heroi heroi){
+        System.out.println("\n** Sala 3: Enigma das Poções **");
+        System.out.println("Escolhe um caminho:");
+        System.out.println("1. Resolver o enigma do Professor Snape.");
+        System.out.println("2. Tentar adivinhar a poção correta.");
+
+        int escolha = scanner.nextInt();
+        Random random = new Random();
+        if (escolha == 1) {
+            System.out.println("Resolveste o enigma e podes avançar com segurança.");
+        } else if (escolha == 2) {
+            int sorte = random.nextInt(2);
+            if (sorte == 0) {
+                System.out.println("Escolheste a poção correta e podes avançar!");
+            } else {
+                System.out.println("Escolha errada! Sofreste algum dano.");
+                heroi.setVidaAtual(heroi.getVidaAtual() - 10);
+            }
+        } else {
+            System.out.println("Escolha inválida.");
+            salaEnigmaPocoes(heroi);
+        }
+
+        salaFinalPedraFilosofal(heroi);
+    }
+
+    private void salaFinalPedraFilosofal(Heroi heroi) {
+        System.out.println("\n** Sala Final: Confronto com Voldemort **");
+        NPC voldemort = new NPC("Voldemort", 150, 30, 20);
+        heroi.atacar(voldemort);
+
+        if (heroi.getVidaAtual() > 0) {
+            System.out.println("Derrotaste o Voldemort e salvaste a Pedra Filosofal!");
+        } else {
+            System.out.println("Voldemort venceu. Fim de jogo.");
+        }
+    }
+
+
     public void salaEntradaHogwarts(Heroi heroi, Vendedor vendedor) throws InterruptedException {
         // Introdução do jogo
         System.out.println(CYAN + "\nBem-vindo à escola de Hogwarts, " + heroi.getNome() + "!");
@@ -325,6 +311,7 @@ public class Jogo {
         }
     }
 
+    /*
     public void salaFlorestaProibida(Heroi heroi, List<String> heroisPermitidos) {
         // Mensagem de entrada
         System.out.println(CYAN + "\nEntraste na Floresta Proibida, um lugar sombrio e cheio de criaturas perigosas." + RESET);
@@ -346,6 +333,7 @@ public class Jogo {
         // Mensagem de saída
         System.out.println(CYAN + "\nDepois de enfrentar os perigos da Floresta Proibida, " + heroi.getNome() + " vai continuar a sua viagem." + RESET);
     }
+
 
     private void salaRequisitos(Heroi heroi) {
         // Mensagem de entrada
@@ -501,5 +489,5 @@ public class Jogo {
 
     public void salaFinal() {
 
-    }
+    }*/
 }
