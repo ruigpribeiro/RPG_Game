@@ -12,6 +12,8 @@ import Hogwarts.Itens.Pocao;
 
 import java.util.*;
 
+import java.util.Scanner;
+
 public class Jogo {
     private Scanner scanner;
     private static final String RESET = "\u001B[0m";
@@ -33,7 +35,7 @@ public class Jogo {
     /**
      * Cria uma personagem com as escolhas do utilizador
      *
-     * @return
+     * @return Heroi
      */
     public Heroi criarPersonagem() {
         // Escolha de herói
@@ -96,6 +98,7 @@ public class Jogo {
         return heroi;
     }
 
+
     /**
      * Lógica do jogo
      *
@@ -139,7 +142,6 @@ public class Jogo {
         // Todos começam com uma varinha básica grátis
         heroi.setArmaPrincipal(new ArmaPrincipal("Varinha de Aprendiz", 0, todosPermitidos, 10, 20));
 
-
         boolean jogar = true;
         while (jogar) {
             // Sala de Entrada de Hogwarts
@@ -162,29 +164,28 @@ public class Jogo {
                     pedraFilosofal(heroi);
                     break;
                 case 2:
-                    //camaraDosSegredos(heroi);
+                    camaraSegredos(heroi);
                     break;
                 case 3:
-                    //prisioneiroAzkaban(heroi);
+                    prisioneiroAzkaban(heroi);
                     break;
                 case 4:
-                    //caliceFogo(heroi);
+                    caliceFogo(heroi);
                     break;
                 case 5:
-                    //ordemFenix(heroi);
+                    ordemFenix(heroi);
                     break;
                 case 6:
-                    //principeMisterioso(heroi);
+                    principeMisterioso(heroi);
                     break;
                 case 7:
-                    //talismasMorte(heroi);
+                    talismasMorte(heroi, todosPermitidos);
                     break;
                 default:
-                    System.out.println("Opção inválida.");
+                    System.out.println(RED + "Opção inválida." + RESET);
             }
 
-
-            System.out.println(GREEN + "\nDeseja continuar jogando?" + RESET);
+            System.out.println(GREEN + "\nDesejas continuar a jogar?" + RESET);
             System.out.println(YELLOW + "1. Sim" + RESET);
             System.out.println(RED + "2. Não" + RESET);
             System.out.print(YELLOW + "Opção: " + RESET);
@@ -195,93 +196,6 @@ public class Jogo {
             }
         }
     }
-
-    private void pedraFilosofal(Heroi heroi) throws InterruptedException {
-        System.out.println("\nEscolheste: Pedra Filosofal");
-        salaFlorestaProibida(heroi);
-    }
-
-    private void salaFlorestaProibida(Heroi heroi) {
-        System.out.println("\n** Sala 1: Floresta Proibida **");
-        System.out.println("Escolhe um caminho:");
-        System.out.println("1. Explorar a floresta.");
-        System.out.println("2. Seguir uma trilha de pegadas.");
-
-        int escolha = scanner.nextInt();
-        if (escolha == 1) {
-            System.out.println("Encontraste um centauro que avisa-te sobre o perigo que corres.");
-            // Adicionar algum efeito ou interação.
-        } if (escolha == 2) {
-            System.out.println("Encontraste o Voldemort a beber sangue de unicórnio!");
-            NPC voldemort = new NPC("Voldemort", 100, 20, 15);
-            heroi.atacar(voldemort);
-        } else {
-            System.out.println("Escolha inválida.");
-            salaFlorestaProibida(heroi);
-        }
-
-        salaXadrezGigante(heroi);
-    }
-
-    private void salaXadrezGigante(Heroi heroi){
-        System.out.println("\n** Sala 2: Sala do Xadrez Gigante **");
-        System.out.println("Escolhe um caminho:");
-        System.out.println("1. Participar no jogo de xadrez gigante.");
-        System.out.println("2. Procurar um atalho.");
-
-        int escolha = scanner.nextInt();
-        if (escolha == 1) {
-            System.out.println("Estás em um duelo de xadrez! Derrota o adversário.");
-            // Implementar lógica do duelo.
-        } else if (escolha == 2) {
-            System.out.println("Encontraste peças guardiãs menores, prepare-te para lutar!");
-            // Implementar batalha contra peças menores.
-        } else {
-            System.out.println("Escolha inválida.");
-            salaXadrezGigante(heroi);
-        }
-
-        salaEnigmaPocoes(heroi);
-    }
-
-    private void salaEnigmaPocoes(Heroi heroi){
-        System.out.println("\n** Sala 3: Enigma das Poções **");
-        System.out.println("Escolhe um caminho:");
-        System.out.println("1. Resolver o enigma do Professor Snape.");
-        System.out.println("2. Tentar adivinhar a poção correta.");
-
-        int escolha = scanner.nextInt();
-        Random random = new Random();
-        if (escolha == 1) {
-            System.out.println("Resolveste o enigma e podes avançar com segurança.");
-        } else if (escolha == 2) {
-            int sorte = random.nextInt(2);
-            if (sorte == 0) {
-                System.out.println("Escolheste a poção correta e podes avançar!");
-            } else {
-                System.out.println("Escolha errada! Sofreste algum dano.");
-                heroi.setVidaAtual(heroi.getVidaAtual() - 10);
-            }
-        } else {
-            System.out.println("Escolha inválida.");
-            salaEnigmaPocoes(heroi);
-        }
-
-        salaFinalPedraFilosofal(heroi);
-    }
-
-    private void salaFinalPedraFilosofal(Heroi heroi) {
-        System.out.println("\n** Sala Final: Confronto com Voldemort **");
-        NPC voldemort = new NPC("Voldemort", 150, 30, 20);
-        heroi.atacar(voldemort);
-
-        if (heroi.getVidaAtual() > 0) {
-            System.out.println("Derrotaste o Voldemort e salvaste a Pedra Filosofal!");
-        } else {
-            System.out.println("Voldemort venceu. Fim de jogo.");
-        }
-    }
-
 
     public void salaEntradaHogwarts(Heroi heroi, Vendedor vendedor) throws InterruptedException {
         // Introdução do jogo
@@ -311,183 +225,689 @@ public class Jogo {
         }
     }
 
-    /*
-    public void salaFlorestaProibida(Heroi heroi, List<String> heroisPermitidos) {
-        // Mensagem de entrada
-        System.out.println(CYAN + "\nEntraste na Floresta Proibida, um lugar sombrio e cheio de criaturas perigosas." + RESET);
+    // PEDRA FILOSOFAL
 
-        Random random = new Random();
-        int rand = random.nextInt(2);
+    private void pedraFilosofal(Heroi heroi) throws InterruptedException {
+        System.out.println(CYAN + "\nEscolheste: Pedra Filosofal" + RESET);
+        salaFlorestaProibida(heroi);
+    }
 
-        if (rand == 0) {
-            System.out.println(GREEN + "Um Centauro apareceu à tua frente. Ele avisou-te sobre o perigo e ofereceu-te uma poção!" + RESET);
-            // Adiciona uma poção ao inventário
-            Pocao pocao = new Pocao("Poção de Vida", 0, heroisPermitidos, 15, 5);
-            heroi.adicionarItemAoInventario(pocao);
+    private void salaFlorestaProibida(Heroi heroi) {
+        System.out.println(GREEN + "\n** Sala 1: Floresta Proibida **" + RESET);
+        System.out.println(YELLOW + "Escolhe um caminho:" + RESET);
+        System.out.println("1. Explorar a floresta.");
+        System.out.println("2. Seguir uma trilha de pegadas.");
+        System.out.print(YELLOW + "Opção: " + RESET);
+
+        int escolha = scanner.nextInt();
+        if (escolha == 1) {
+            System.out.println(CYAN + "Encontraste um centauro que avisa-te sobre o perigo que corres." + RESET);
+            // Adicionar algum efeito ou interação.
+        } else if (escolha == 2) {
+            System.out.println(CYAN + "Encontraste o Voldemort a beber sangue de unicórnio!" + RESET);
+            NPC voldemort = new NPC("Voldemort", 100, 20, 15);
+            heroi.atacar(voldemort);
         } else {
-            System.out.println(RED + "Foste atacado por uma Acromântula! Prepara-te para lutar!" + RESET);
-            NPC acromantula = new NPC("Acromântula", 100, 20, 10);
-            heroi.atacar(acromantula);
+            System.out.println(RED + "Escolha inválida." + RESET);
+            salaFlorestaProibida(heroi);
         }
 
-        // Mensagem de saída
-        System.out.println(CYAN + "\nDepois de enfrentar os perigos da Floresta Proibida, " + heroi.getNome() + " vai continuar a sua viagem." + RESET);
+        salaXadrezGigante(heroi);
     }
 
+    private void salaXadrezGigante(Heroi heroi) {
+        System.out.println(GREEN + "\n** Sala 2: Sala do Xadrez Gigante **" + RESET);
+        System.out.println(YELLOW + "Escolhe um caminho:" + RESET);
+        System.out.println("1. Participar no jogo de xadrez gigante.");
+        System.out.println("2. Procurar um atalho.");
+        System.out.print(YELLOW + "Opção: " + RESET);
 
-    private void salaRequisitos(Heroi heroi) {
-        // Mensagem de entrada
-        System.out.println(CYAN + "\nEntraste na Sala de Requisitos. Ela molda-se às tuas necessidades..." + RESET);
-
-        // Totem Mágico com efeitos aleatórios
-        System.out.println(CYAN + "No centro da sala, um Totem Mágico brilha intensamente. Ele pode conceder-te ouro ou causar-te dano." + RESET);
-
-        Random random = new Random();
-        int efeito = random.nextInt(2);
-
-        if (efeito == 0) {
-            int ouroGanho = random.nextInt(50) + 1;
-            heroi.setOuro(heroi.getOuro() + ouroGanho);
-            System.out.println(GREEN + "O Totem concedeu-te " + ouroGanho + " moedas de ouro!" + RESET);
+        int escolha = scanner.nextInt();
+        if (escolha == 1) {
+            System.out.println(CYAN + "Estás em um duelo de xadrez! Derrota o adversário." + RESET);
+            // Implementar lógica do duelo.
+        } else if (escolha == 2) {
+            System.out.println(CYAN + "Encontraste peças guardiãs menores, prepare-te para lutar!" + RESET);
+            // Implementar batalha contra peças menores.
         } else {
-            int danoRecebido = random.nextInt(30) + 1;
-            heroi.setVidaAtual(heroi.getVidaAtual() - danoRecebido);
-            System.out.println(RED + "O Totem lançou-te uma maldição! Perdeste " + danoRecebido + " pontos de vida." + RESET);
+            System.out.println(RED + "Escolha inválida." + RESET);
+            salaXadrezGigante(heroi);
         }
 
-        // Verifica se o herói ainda está vivo
-        if (heroi.getVidaAtual() <= 0) {
-            System.out.println(RED + "Foste derrotado pela maldição do Totem. O jogo terminou." + RESET);
+        salaEnigmaPocoes(heroi);
+    }
+
+    private void salaEnigmaPocoes(Heroi heroi) {
+        System.out.println(GREEN + "\n** Sala 3: Enigma das Poções **" + RESET);
+        System.out.println(YELLOW + "Escolhe um caminho:" + RESET);
+        System.out.println("1. Resolver o enigma do Professor Snape.");
+        System.out.println("2. Tentar adivinhar a poção correta.");
+        System.out.print(YELLOW + "Opção: " + RESET);
+
+        int escolha = scanner.nextInt();
+        Random random = new Random();
+        if (escolha == 1) {
+            System.out.println(CYAN + "Resolveste o enigma e podes avançar com segurança." + RESET);
+        } else if (escolha == 2) {
+            int sorte = random.nextInt(2);
+            if (sorte == 0) {
+                System.out.println(CYAN + "Escolheste a poção correta e podes avançar!" + RESET);
+            } else {
+                System.out.println(RED + "Escolha errada! Sofreste algum dano." + RESET);
+                heroi.setVidaAtual(heroi.getVidaAtual() - 10);
+            }
+        } else {
+            System.out.println(RED + "Escolha inválida." + RESET);
+            salaEnigmaPocoes(heroi);
         }
+
+        salaFinalPedraFilosofal(heroi);
     }
 
-    private void salaBiblioteca(Heroi heroi, List<String> heroisPermitidos) {
-        // Mensagem de entrada
-        System.out.println(CYAN + "\nEntraste na Biblioteca de Hogwarts. Entre as prateleiras empoeiradas, avistaste algo a brilhar." + RESET);
-
-        // Encontrar itens perdidos
-        Pocao pocao = new Pocao("Poção de Vida", 0, heroisPermitidos, 15, 5);
-        ArmaPrincipal varinhaFenix = new ArmaPrincipal("Varinha de Fênix", 0, heroisPermitidos, 30, 50);
-
-        System.out.println(GREEN + "Encontraste uma Poção de Vida e a Varinha de Fênix perdida!" + RESET);
-        heroi.adicionarItemAoInventario(pocao);
-        heroi.setArmaPrincipal(varinhaFenix);
-
-        System.out.println(GREEN + "Os itens foram adicionados ao teu inventário." + RESET);
-    }
-
-    private void salaCamaraDosSegredos(Heroi heroi) {
-        // Mensagem de entrada
-        System.out.println(CYAN + "\nEntraste na Câmara dos Segredos. O ambiente é frio e o ar está denso com uma magia antiga." + RESET);
-
-        // Enfrentar um inimigo
-        NPC basilisco = new NPC("Basilisco", 100, 25, 25);
-        System.out.println(RED + "O Basilisco emerge das sombras! Prepara-te para lutar!" + RESET);
-        heroi.atacar(basilisco);
+    private void salaFinalPedraFilosofal(Heroi heroi) {
+        System.out.println(GREEN + "\n** Sala Final: Confronto com Voldemort **" + RESET);
+        NPC voldemort = new NPC("Voldemort", 150, 30, 20);
+        heroi.atacar(voldemort);
 
         if (heroi.getVidaAtual() > 0) {
-            System.out.println(GREEN + "Derrotaste o Basilisco! A Câmara dos Segredos está segura... por enquanto." + RESET);
-            heroi.mostrarDetalhes();
+            System.out.println(CYAN + "Derrotaste o Voldemort e salvaste a Pedra Filosofal!" + RESET);
         } else {
-            System.out.println(RED + "Foste derrotado pelo Basilisco. O jogo terminou." + RESET);
+            System.out.println(RED + "Voldemort venceu. Fim de jogo." + RESET);
         }
     }
 
-    public void salaPocoes(Heroi heroi, List<String> heroisPermitidos) {
-        // Mensagem de entrada
-        System.out.println(CYAN + "\nEntraste na Sala das Poções, onde o Professor Snape está à tua espera." + RESET);
+    // CAMARA DOS SEGREDOS
 
-        // Snape oferece uma poção em troca de ouro
-        System.out.println(CYAN + "Snape oferece-te uma Poção de Vida por 10 moedas de ouro." + RESET);
-        System.out.print(CYAN + "Queres comprar? (1 para Sim, 0 para Não): " + RESET);
-        int opcao = scanner.nextInt();
+    public void camaraSegredos(Heroi heroi) throws InterruptedException {
+        System.out.println(CYAN + "\nEscolheste: Câmara dos Segredos" + RESET);
+        entradaCamaraSegredos(heroi);
+    }
 
-        if (opcao == 1) {
-            if (heroi.getOuro() >= 10) {
-                heroi.setOuro(heroi.getOuro() - 10);
-                Pocao pocao = new Pocao("Poção de Vida", 10, heroisPermitidos, 15, 5);
-                heroi.adicionarItemAoInventario(pocao);
-                System.out.println(GREEN + "Compraste a Poção de Vida." + RESET);
+    public void entradaCamaraSegredos(Heroi heroi) throws InterruptedException {
+        System.out.println(GREEN + "\n** Sala 1: Entrada da Câmara dos Segredos **" + RESET);
+        System.out.println(YELLOW + "Escolhe um caminho:" + RESET);
+        System.out.println("1. Explorar a casa de banho.");
+        System.out.println("2. Seguir uma voz sibilante que vem dos corredores.");
+        System.out.print(YELLOW + "Opção: " + RESET);
+
+        int escolha = scanner.nextInt();
+        if (escolha == 1) {
+            System.out.println(CYAN + "Descobriste a entrada para a Câmara dos Segredos ao abrir a torneira certa." + RESET);
+            camaraSubterranea(heroi);
+        } else if (escolha == 2) {
+            System.out.println(CYAN + "Seguiste a voz e enfrentaste perigos nos corredores escuros." + RESET);
+            Random random = new Random();
+            int dano = random.nextInt(20) + 10;
+            heroi.setVidaAtual(heroi.getVidaAtual() - dano);
+            System.out.println(RED + "Sofreste " + dano + " de dano ao seguir a voz do Basilisco!" + RESET);
+            if (heroi.getVidaAtual() > 0) {
+                camaraSubterranea(heroi);
             } else {
-                System.out.println(RED + "Não tens ouro suficiente para comprar a poção." + RESET);
+                System.out.println(RED + "Foste derrotado pela voz sibilante." + RESET);
             }
         } else {
-            System.out.println(CYAN + "Recusaste a oferta do Professor Snape." + RESET);
+            System.out.println(RED + "Escolha inválida." + RESET);
         }
-
-        // Mensagem de saída
-        System.out.println(CYAN + "\nDepois de explorar a Sala das Poções, " + heroi.getNome() + " vai continuar a sua viagem." + RESET);
     }
 
-    private void salaSalaoPrincipal(Heroi heroi, Vendedor vendedor) throws InterruptedException {
-        System.out.println(CYAN + "Chegaste ao Salão Principal." + RESET);
-        System.out.println(CYAN + "O vendedor está aqui com novos itens para ti." + RESET);
+    private void camaraSubterranea(Heroi heroi) throws InterruptedException {
+        System.out.println(GREEN + "\n** Sala 2: Câmara Subterrânea **" + RESET);
+        System.out.println(YELLOW + "Escolhe um caminho:" + RESET);
+        System.out.println("1. Navegar por uma caverna escura.");
+        System.out.println("2. Enfrentar uma série de portas mágicas.");
+        System.out.print(YELLOW + "Opção: " + RESET);
 
-        salaEntradaHogwarts(heroi, vendedor);
-    }
-
-    private void salaMasmorras(Heroi heroi) {
-        System.out.println(CYAN + "Desceste para as Masmorras, onde inimigos aguardam..." + RESET);
-
-        // Gera aleatoriamente entre 1 a 3 inimigos
-        Random random = new Random();
-        int numeroInimigos = random.nextInt(3) + 1;
-
-        for (int i = 0; i < numeroInimigos; i++) {
-            if (i == 0) {
-                NPC basilisco = new NPC("Dementador", 75, 15, 20);
-                System.out.println(RED + "Encontraste um inimigo: " + basilisco.getNome() + RESET);
-                heroi.atacar(basilisco);
-                if (heroi.getVidaAtual() <= 0) {
-                    System.out.println(RED + "Foste derrotado..." + RESET);
-                    return;
-                }
+        int escolha = scanner.nextInt();
+        if (escolha == 1) {
+            System.out.println(CYAN + "Navegas pela caverna escura, mas deparas-te com várias armadilhas." + RESET);
+            Random random = new Random();
+            int dano = random.nextInt(10) + 5; // Dano entre 5 e 15
+            heroi.setVidaAtual(heroi.getVidaAtual() - dano);
+            System.out.println(RED + "Tu sofreste " + dano + " de dano ao evitar os obstáculos." + RESET);
+        } else if (escolha == 2) {
+            System.out.println(CYAN + "Tu enfrentas uma série de portas, cada uma com uma charada mágica." + RESET);
+            Random random = new Random();
+            boolean sucesso = random.nextBoolean();
+            if (sucesso) {
+                System.out.println(CYAN + "Resolveste todas as charadas e avançaste!" + RESET);
+            } else {
+                int dano = random.nextInt(10) + 5; // Dano entre 5 e 15
+                heroi.setVidaAtual(heroi.getVidaAtual() - dano);
+                System.out.println(RED + "Falhaste em uma charada e sofreste " + dano + " de dano." + RESET);
             }
-            if (i == 1) {
-                NPC troll = new NPC("Troll", 50, 10, 15);
-                System.out.println(RED + "Encontraste um inimigo: " + troll.getNome() + RESET);
-                heroi.atacar(troll);
-                if (heroi.getVidaAtual() <= 0) {
-                    System.out.println(RED + "Foste derrotado..." + RESET);
-                    return;
-                }
-            }
-            if (i == 2) {
-                NPC aranhaNegra = new NPC("Aranha Negra", 25, 5, 10);
-                System.out.println(RED + "Encontraste um inimigo: " + aranhaNegra.getNome() + RESET);
-                heroi.atacar(aranhaNegra);
-                if (heroi.getVidaAtual() <= 0) {
-                    System.out.println(RED + "Foste derrotado..." + RESET);
-                    return;
-                }
-            }
-        }
-
-        System.out.println(GREEN + "Derrotaste todos os inimigos e podes seguir para a próxima sala." + RESET);
-    }
-
-    public void salaEstufaHerbologia(Heroi heroi) {
-        System.out.println(CYAN + "\nChegaste à Estufa de Herbologia e encontraste algumas moedas de ouro entre as plantas." + RESET);
-        int ouroEncontrado = 50;
-        heroi.setOuro(heroi.getOuro() + ouroEncontrado);
-        System.out.println(GREEN + "Encontraste " + ouroEncontrado + " moedas de ouro." + RESET);
-    }
-
-    public void salaCorvinal(Heroi heroi) {
-        System.out.println(CYAN + "\nA Sala da Corvinal está cheia de armadilhas mágicas." + RESET);
-        Random random = new Random();
-        int chanceArmadilha = random.nextInt(100);
-
-        if (chanceArmadilha < 50) { // 50% de chance de evitar a armadilha
-            System.out.println(GREEN + "Conseguiste evitar a armadilha!" + RESET);
         } else {
-            int danoArmadilha = random.nextInt(20) + 10; // Dano entre 10 e 30
-            heroi.setVidaAtual(heroi.getVidaAtual() - danoArmadilha);
-            System.out.println(RED + "Caiste numa armadilha e perdeste " + danoArmadilha + " pontos de vida." + RESET);
+            System.out.println(RED + "Escolha inválida." + RESET);
+            camaraSubterranea(heroi);
+            return;
+        }
+
+        encontroTomRiddle(heroi);
+    }
+
+    private void encontroTomRiddle(Heroi heroi) throws InterruptedException {
+        System.out.println(GREEN + "\n** Sala 3: Encontro com Tom Riddle **" + RESET);
+        System.out.println(YELLOW + "Escolhe um caminho:" + RESET);
+        System.out.println("1. Dialogar com Tom Riddle e tentar ganhar tempo.");
+        System.out.println("2. Lutar contra criaturas invocadas por Tom Riddle.");
+        System.out.print(YELLOW + "Opção: " + RESET);
+
+        int escolha = scanner.nextInt();
+        if (escolha == 1) {
+            System.out.println(CYAN + "Tu tentas ganhar tempo dialogando com Tom Riddle, mas ele te observa com cautela." + RESET);
+            // Pode-se adicionar um efeito ou interação adicional, como reduzir a força de Tom Riddle na batalha final.
+        } else if (escolha == 2) {
+            System.out.println(CYAN + "Tom Riddle invoca criaturas para lutar contra ti!" + RESET);
+            NPC criatura = new NPC("Criatura Invocada", 40, 15, 10);
+            heroi.atacar(criatura);
+            if (heroi.getVidaAtual() <= 0) {
+                System.out.println(RED + "Foste derrotado pelas criaturas invocadas." + RESET);
+                return;
+            }
+        } else {
+            System.out.println(RED + "Escolha inválida." + RESET);
+            encontroTomRiddle(heroi);
+            return;
+        }
+
+        batalhaFinalCamaraSegredos(heroi);
+    }
+
+    private void batalhaFinalCamaraSegredos(Heroi heroi) throws InterruptedException {
+        System.out.println(GREEN + "\n** Sala Final: Batalha contra o Basilisco e Tom Riddle **" + RESET);
+        NPC basilisco = new NPC("Basilisco", 120, 30, 25);
+        NPC tomRiddle = new NPC("Tom Riddle", 100, 25, 20);
+
+        System.out.println(CYAN + "Tu enfrentas o poderoso Basilisco e a figura de Tom Riddle!" + RESET);
+
+        heroi.atacar(basilisco);
+        if (heroi.getVidaAtual() > 0) {
+            heroi.atacar(tomRiddle);
+        }
+
+        if (heroi.getVidaAtual() > 0) {
+            System.out.println(CYAN + "Conseguiste derrotar o Basilisco e destruíste o diário de Tom Riddle!" + RESET);
+        } else {
+            System.out.println(RED + "Foste derrotado na Câmara dos Segredos. Fim de jogo." + RESET);
         }
     }
 
-    public void salaFinal() {
+    // PRISIONEIRO DE AZKABAN
 
-    }*/
+    public void prisioneiroAzkaban(Heroi heroi) throws InterruptedException {
+        System.out.println(CYAN + "\nEscolheste: O Prisioneiro de Azkaban" + RESET);
+        salaEncontroSirius(heroi);
+    }
+
+    private void salaEncontroSirius(Heroi heroi) throws InterruptedException {
+        System.out.println(GREEN + "\n** Sala 1: Encontro com Sirius Black **" + RESET);
+        System.out.println(YELLOW + "Escolhe um caminho:" + RESET);
+        System.out.println("1. Investigar o esconderijo de Sirius Black na Casa dos Gritos.");
+        System.out.println("2. Seguir as pistas do Mapa do Maroto.");
+        System.out.print(YELLOW + "Opção: " + RESET);
+
+        int escolha = scanner.nextInt();
+        if (escolha == 1) {
+            System.out.println(CYAN + "Entras na Casa dos Gritos e deparas-te com Sirius Black, que te revela a verdade sobre a sua inocência." + RESET);
+            // Adicionar algum efeito ou interação.
+        } else if (escolha == 2) {
+            System.out.println(CYAN + "Seguiste as pistas no Mapa do Maroto e descobriste o paradeiro de Peter Pettigrew." + RESET);
+            // Adicionar interação relacionada com Pettigrew.
+        } else {
+            System.out.println(RED + "Escolha inválida." + RESET);
+            salaEncontroSirius(heroi);
+            return;
+        }
+
+        salaPatrono(heroi);
+    }
+
+    private void salaPatrono(Heroi heroi) throws InterruptedException {
+        System.out.println(GREEN + "\n** Sala 2: Floresta Proibida e o Patrono **" + RESET);
+        System.out.println(YELLOW + "Escolhe um caminho:" + RESET);
+        System.out.println("1. Enfrentar os Dementores usando o feitiço Patrono.");
+        System.out.println("2. Procurar refúgio na cabana de Hagrid.");
+        System.out.print(YELLOW + "Opção: " + RESET);
+
+        int escolha = scanner.nextInt();
+        if (escolha == 1) {
+            System.out.println(CYAN + "Tu conjuras um Patrono para afastar os Dementores." + RESET);
+            // Implementar lógica do feitiço Patrono.
+        } else if (escolha == 2) {
+            System.out.println(CYAN + "Refugiaste-te na cabana de Hagrid, mas os Dementores estão a cercá-la." + RESET);
+            // Implementar um confronto ou interação.
+        } else {
+            System.out.println(RED + "Escolha inválida." + RESET);
+            salaPatrono(heroi);
+            return;
+        }
+
+        salaViagemNoTempo(heroi);
+    }
+
+    private void salaViagemNoTempo(Heroi heroi) throws InterruptedException {
+        System.out.println(GREEN + "\n** Sala 3: Viagem no Tempo **" + RESET);
+        System.out.println(YELLOW + "Escolhe um caminho:" + RESET);
+        System.out.println("1. Usar o Vira-Tempo para salvar Sirius e Bicuço.");
+        System.out.println("2. Tentar enfrentar os desafios sem alterar o tempo.");
+        System.out.print(YELLOW + "Opção: " + RESET);
+
+        int escolha = scanner.nextInt();
+        if (escolha == 1) {
+            System.out.println(CYAN + "Usaste o Vira-Tempo e conseguiste salvar Sirius Black e Bicuço." + RESET);
+            // Implementar alguma interação ou bônus.
+        } else if (escolha == 2) {
+            System.out.println(CYAN + "Decidiste não usar o Vira-Tempo e enfrentas os desafios como eles são." + RESET);
+            Random random = new Random();
+            int dano = random.nextInt(15) + 5; // Dano entre 5 e 20
+            heroi.setVidaAtual(heroi.getVidaAtual() - dano);
+            System.out.println(RED + "Tu sofres " + dano + " de dano ao enfrentar os desafios." + RESET);
+        } else {
+            System.out.println(RED + "Escolha inválida." + RESET);
+            salaViagemNoTempo(heroi);
+            return;
+        }
+
+        salaFinalPrisioneiroAzkaban(heroi);
+    }
+
+    private void salaFinalPrisioneiroAzkaban(Heroi heroi) throws InterruptedException {
+        System.out.println(GREEN + "\n** Sala Final: Confronto com os Dementores **" + RESET);
+        System.out.println(CYAN + "Chegaste ao confronto final contra os Dementores que querem capturar Sirius Black." + RESET);
+        NPC dementor = new NPC("Dementor", 80, 20, 15);
+
+        System.out.println(CYAN + "Tu precisas conjurar um Patrono poderoso para afastá-los!" + RESET);
+        heroi.atacar(dementor);
+
+        if (heroi.getVidaAtual() > 0) {
+            System.out.println(CYAN + "Conseguiste afastar os Dementores e salvar Sirius Black!" + RESET);
+        } else {
+            System.out.println(RED + "Os Dementores venceram. Fim de jogo." + RESET);
+        }
+    }
+
+    // CALICE DE FOGO
+
+    public void caliceFogo(Heroi heroi) throws InterruptedException {
+        System.out.println(CYAN + "\nEscolheste: O Cálice de Fogo" + RESET);
+        salaDesafioDragao(heroi);
+    }
+
+    private void salaDesafioDragao(Heroi heroi) throws InterruptedException {
+        System.out.println(GREEN + "\n** Sala 1: O Desafio do Dragão **" + RESET);
+        System.out.println(YELLOW + "Escolhe um caminho:" + RESET);
+        System.out.println("1. Enfrentar o dragão e recuperar o ovo dourado.");
+        System.out.println("2. Tentar desviar do dragão usando astúcia e velocidade.");
+        System.out.print(YELLOW + "Opção: " + RESET);
+
+        int escolha = scanner.nextInt();
+        if (escolha == 1) {
+            System.out.println(CYAN + "Tu decides enfrentar o dragão diretamente! A luta é intensa, mas consegues recuperar o ovo dourado." + RESET);
+            // Implementar lógica da luta com o dragão.
+        } else if (escolha == 2) {
+            System.out.println(CYAN + "Usaste a tua inteligência para desviar do dragão e recuperar o ovo sem entrar em combate direto." + RESET);
+            // Implementar interação de evitar combate.
+        } else {
+            System.out.println(RED + "Escolha inválida." + RESET);
+            salaDesafioDragao(heroi);
+            return;
+        }
+
+        salaLagoNegro(heroi);
+    }
+
+    private void salaLagoNegro(Heroi heroi) throws InterruptedException {
+        System.out.println(GREEN + "\n** Sala 2: O Desafio do Lago Negro **" + RESET);
+        System.out.println(YELLOW + "Escolhe um caminho:" + RESET);
+        System.out.println("1. Mergulhar nas águas escuras para resgatar os reféns.");
+        System.out.println("2. Tentar encontrar uma forma alternativa de salvar os reféns sem entrar no lago.");
+        System.out.print(YELLOW + "Opção: " + RESET);
+
+        int escolha = scanner.nextInt();
+        if (escolha == 1) {
+            System.out.println(CYAN + "Mergulhaste nas profundezas do Lago Negro e enfrentaste as criaturas subaquáticas para salvar os reféns." + RESET);
+            // Implementar lógica do desafio subaquático.
+        } else if (escolha == 2) {
+            System.out.println(CYAN + "Tentaste encontrar uma alternativa, mas o tempo é curto. Acabas por ter que mergulhar de qualquer forma." + RESET);
+            Random random = new Random();
+            int dano = random.nextInt(10) + 5; // Dano entre 5 e 15
+            heroi.setVidaAtual(heroi.getVidaAtual() - dano);
+            System.out.println(RED + "Sofreste " + dano + " de dano ao enfrentar as criaturas do lago." + RESET);
+        } else {
+            System.out.println(RED + "Escolha inválida." + RESET);
+            salaLagoNegro(heroi);
+            return;
+        }
+
+        salaLabirinto(heroi);
+    }
+
+    private void salaLabirinto(Heroi heroi) throws InterruptedException {
+        System.out.println(GREEN + "\n** Sala 3: O Labirinto **" + RESET);
+        System.out.println(YELLOW + "Escolhe um caminho:" + RESET);
+        System.out.println("1. Seguir em frente enfrentando as criaturas e armadilhas do labirinto.");
+        System.out.println("2. Procurar uma rota alternativa através do labirinto, evitando confrontos diretos.");
+        System.out.print(YELLOW + "Opção: " + RESET);
+
+        int escolha = scanner.nextInt();
+        if (escolha == 1) {
+            System.out.println(CYAN + "Tu decides seguir o caminho mais direto, enfrentando os perigos do labirinto." + RESET);
+            // Implementar lógica de combate no labirinto.
+        } else if (escolha == 2) {
+            System.out.println(CYAN + "Tentaste evitar os confrontos, mas acabaste por encontrar um inimigo no final do percurso." + RESET);
+            Random random = new Random();
+            int dano = random.nextInt(15) + 5; // Dano entre 5 e 20
+            heroi.setVidaAtual(heroi.getVidaAtual() - dano);
+            System.out.println(RED + "Sofreste " + dano + " de dano ao tentar evitar os confrontos." + RESET);
+        } else {
+            System.out.println(RED + "Escolha inválida." + RESET);
+            salaLabirinto(heroi);
+            return;
+        }
+
+        salaFinalCaliceFogo(heroi);
+    }
+
+    private void salaFinalCaliceFogo(Heroi heroi) throws InterruptedException {
+        System.out.println(GREEN + "\n** Sala Final: O Cemitério e o Confronto com Voldemort **" + RESET);
+        System.out.println(CYAN + "Chegaste ao cemitério onde ocorre o renascimento de Voldemort. Agora precisas enfrentá-lo!" + RESET);
+        NPC voldemort = new NPC("Voldemort", 200, 35, 25);
+
+        System.out.println(CYAN + "Tu precisas usar todas as tuas habilidades para sobreviver e escapar com vida!" + RESET);
+        heroi.atacar(voldemort);
+
+        if (heroi.getVidaAtual() > 0) {
+            System.out.println(CYAN + "Conseguiste sobreviver e escapar com vida, mas o perigo de Voldemort está apenas a começar." + RESET);
+        } else {
+            System.out.println(RED + "Voldemort venceu. Fim de jogo." + RESET);
+        }
+    }
+
+    // ORDEM DE FENIX
+
+    public void ordemFenix(Heroi heroi) throws InterruptedException {
+        System.out.println(CYAN + "\nEscolheste: Ordem da Fênix" + RESET);
+        salaMinisterioMagia(heroi);
+    }
+
+    private void salaMinisterioMagia(Heroi heroi) throws InterruptedException {
+        System.out.println(GREEN + "\n** Sala 1: Ministério da Magia **" + RESET);
+        System.out.println(YELLOW + "Escolhe um caminho:" + RESET);
+        System.out.println("1. Invadir o Ministério da Magia para resgatar a profecia.");
+        System.out.println("2. Procurar uma entrada secreta para evitar os aurores.");
+        System.out.print(YELLOW + "Opção: " + RESET);
+
+        int escolha = scanner.nextInt();
+        if (escolha == 1) {
+            System.out.println(CYAN + "Tu e os teus amigos invadiram o Ministério da Magia e estão em busca da profecia." + RESET);
+            // Implementar lógica de enfrentamento dos aurores.
+        } else if (escolha == 2) {
+            System.out.println(CYAN + "Decidiste procurar uma entrada secreta, mas o tempo é curto e foste descoberto." + RESET);
+            Random random = new Random();
+            int dano = random.nextInt(10) + 5; // Dano entre 5 e 15
+            heroi.setVidaAtual(heroi.getVidaAtual() - dano);
+            System.out.println(RED + "Sofreste " + dano + " de dano ao ser descoberto pelos aurores." + RESET);
+        } else {
+            System.out.println(RED + "Escolha inválida." + RESET);
+            salaMinisterioMagia(heroi);
+            return;
+        }
+
+        salaSalaDasProfecias(heroi);
+    }
+
+    private void salaSalaDasProfecias(Heroi heroi) throws InterruptedException {
+        System.out.println(GREEN + "\n** Sala 2: Sala das Profecias **" + RESET);
+        System.out.println(YELLOW + "Escolhe um caminho:" + RESET);
+        System.out.println("1. Encontrar a profecia antes dos Comensais da Morte.");
+        System.out.println("2. Tentar usar magia para destruir a sala e impedir que a profecia seja tomada.");
+        System.out.print(YELLOW + "Opção: " + RESET);
+
+        int escolha = scanner.nextInt();
+        if (escolha == 1) {
+            System.out.println(CYAN + "Tu e os teus amigos encontraram a profecia, mas os Comensais da Morte chegaram!" + RESET);
+            // Implementar lógica para recuperar a profecia.
+        } else if (escolha == 2) {
+            System.out.println(CYAN + "Tentaste destruir a sala, mas a magia é instável e causou um colapso." + RESET);
+            Random random = new Random();
+            int dano = random.nextInt(15) + 5; // Dano entre 5 e 20
+            heroi.setVidaAtual(heroi.getVidaAtual() - dano);
+            System.out.println(RED + "Sofreste " + dano + " de dano ao tentar destruir a sala." + RESET);
+        } else {
+            System.out.println(RED + "Escolha inválida." + RESET);
+            salaSalaDasProfecias(heroi);
+            return;
+        }
+
+        salaDepartamentoMistérios(heroi);
+    }
+
+    private void salaDepartamentoMistérios(Heroi heroi) throws InterruptedException {
+        System.out.println(GREEN + "\n** Sala 3: Departamento de Mistérios **" + RESET);
+        System.out.println(YELLOW + "Escolhe um caminho:" + RESET);
+        System.out.println("1. Lutar contra os Comensais da Morte.");
+        System.out.println("2. Tentar escapar com a profecia antes que te cerquem.");
+        System.out.print(YELLOW + "Opção: " + RESET);
+
+        int escolha = scanner.nextInt();
+        if (escolha == 1) {
+            System.out.println(CYAN + "Tu e os teus amigos enfrentam os Comensais da Morte numa batalha intensa." + RESET);
+            // Implementar lógica de combate.
+        } else if (escolha == 2) {
+            System.out.println(CYAN + "Tentaste escapar, mas foste cercado. Agora precisas lutar para sobreviver." + RESET);
+            Random random = new Random();
+            int dano = random.nextInt(15) + 10; // Dano entre 10 e 25
+            heroi.setVidaAtual(heroi.getVidaAtual() - dano);
+            System.out.println(RED + "Sofreste " + dano + " de dano ao tentar escapar." + RESET);
+        } else {
+            System.out.println(RED + "Escolha inválida." + RESET);
+            salaDepartamentoMistérios(heroi);
+            return;
+        }
+
+        salaFinalOrdemFenix(heroi);
+    }
+
+    private void salaFinalOrdemFenix(Heroi heroi) throws InterruptedException {
+        System.out.println(GREEN + "\n** Sala Final: Confronto no Ministério da Magia **" + RESET);
+        System.out.println(CYAN + "Os Comensais da Morte te cercaram e a Ordem da Fênix chega para ajudar!" + RESET);
+        NPC belatriz = new NPC("Belatriz Lestrange", 180, 35, 25);
+        NPC lucio = new NPC("Lúcio Malfoy", 170, 30, 20);
+
+        System.out.println(CYAN + "Precisas lutar ao lado da Ordem da Fênix para derrotar os Comensais da Morte." + RESET);
+        heroi.atacar(belatriz);
+        heroi.atacar(lucio);
+
+        if (heroi.getVidaAtual() > 0) {
+            System.out.println(CYAN + "Derrotaste os Comensais da Morte, mas Sirius Black foi morto. Voldemort ainda está à solta." + RESET);
+        } else {
+            System.out.println(RED + "Foste derrotado pelos Comensais da Morte. Fim de jogo." + RESET);
+        }
+    }
+
+    // PRINCIPE MISTERIOSO
+
+    public void principeMisterioso(Heroi heroi) throws InterruptedException {
+        System.out.println(CYAN + "\nEscolheste: O Príncipe Misterioso" + RESET);
+        salaCavernaHorcrux(heroi);
+    }
+
+    private void salaCavernaHorcrux(Heroi heroi) throws InterruptedException {
+        System.out.println(GREEN + "\n** Sala 1: A Caverna da Horcrux **" + RESET);
+        System.out.println(YELLOW + "Escolhe um caminho:" + RESET);
+        System.out.println("1. Navegar pelo lago negro em busca da Horcrux.");
+        System.out.println("2. Investigar as paredes da caverna em busca de pistas.");
+        System.out.print(YELLOW + "Opção: " + RESET);
+
+        int escolha = scanner.nextInt();
+        if (escolha == 1) {
+            System.out.println(CYAN + "Tu e Dumbledore navegam até o centro do lago, onde está a Horcrux." + RESET);
+            System.out.println(CYAN + "Precisas proteger Dumbledore enquanto ele enfraquece após beber a poção." + RESET);
+            // Implementar lógica de proteção e recuperação da Horcrux.
+        } else if (escolha == 2) {
+            System.out.println(CYAN + "Enquanto investigas, criaturas do Inferi começam a emergir das águas!" + RESET);
+            Random random = new Random();
+            int dano = random.nextInt(10) + 5; // Dano entre 5 e 15
+            heroi.setVidaAtual(heroi.getVidaAtual() - dano);
+            System.out.println(RED + "Sofreste " + dano + " de dano ao enfrentar os Inferi." + RESET);
+        } else {
+            System.out.println(RED + "Escolha inválida." + RESET);
+            salaCavernaHorcrux(heroi);
+            return;
+        }
+
+        salaTorreAstronomia(heroi);
+    }
+
+    private void salaTorreAstronomia(Heroi heroi) throws InterruptedException {
+        System.out.println(GREEN + "\n** Sala 2: Torre de Astronomia **" + RESET);
+        System.out.println(YELLOW + "Escolhe um caminho:" + RESET);
+        System.out.println("1. Subir com Dumbledore até o topo da torre.");
+        System.out.println("2. Investigar o andar inferior da torre em busca de sinais de invasores.");
+        System.out.print(YELLOW + "Opção: " + RESET);
+
+        int escolha = scanner.nextInt();
+        if (escolha == 1) {
+            System.out.println(CYAN + "Chegaste ao topo da torre e vês Draco Malfoy prestes a agir." + RESET);
+            System.out.println(CYAN + "Tens de decidir se interferes ou esperas por Dumbledore." + RESET);
+            // Implementar lógica de decisão.
+        } else if (escolha == 2) {
+            System.out.println(CYAN + "Encontras os Comensais da Morte infiltrados, mas és pego desprevenido." + RESET);
+            Random random = new Random();
+            int dano = random.nextInt(15) + 10; // Dano entre 10 e 25
+            heroi.setVidaAtual(heroi.getVidaAtual() - dano);
+            System.out.println(RED + "Sofreste " + dano + " de dano ao ser surpreendido pelos Comensais da Morte." + RESET);
+        } else {
+            System.out.println(RED + "Escolha inválida." + RESET);
+            salaTorreAstronomia(heroi);
+            return;
+        }
+
+        salaInfernoFogo(heroi);
+    }
+
+    private void salaInfernoFogo(Heroi heroi) throws InterruptedException {
+        System.out.println(GREEN + "\n** Sala 3: Inferno de Fogo **" + RESET);
+        System.out.println(YELLOW + "Escolhe um caminho:" + RESET);
+        System.out.println("1. Lutar contra os Comensais da Morte que invadiram Hogwarts.");
+        System.out.println("2. Proteger os alunos e levá-los em segurança até o Salão Principal.");
+        System.out.print(YELLOW + "Opção: " + RESET);
+
+        int escolha = scanner.nextInt();
+        if (escolha == 1) {
+            System.out.println(CYAN + "Tu e os professores lutam bravamente contra os Comensais da Morte." + RESET);
+            // Implementar lógica de combate.
+        } else if (escolha == 2) {
+            System.out.println(CYAN + "Levas os alunos em segurança, mas os Comensais da Morte destroem partes da escola." + RESET);
+            Random random = new Random();
+            int dano = random.nextInt(10) + 5; // Dano entre 5 e 15
+            heroi.setVidaAtual(heroi.getVidaAtual() - dano);
+            System.out.println(RED + "Sofreste " + dano + " de dano ao proteger os alunos." + RESET);
+        } else {
+            System.out.println(RED + "Escolha inválida." + RESET);
+            salaInfernoFogo(heroi);
+            return;
+        }
+
+        salaFinalPrincipeMisterioso(heroi);
+    }
+
+    private void salaFinalPrincipeMisterioso(Heroi heroi) throws InterruptedException {
+        System.out.println(GREEN + "\n** Sala Final: Batalha na Torre de Astronomia **" + RESET);
+        System.out.println(CYAN + "Dumbledore está enfraquecido e Draco Malfoy está prestes a atacar." + RESET);
+        NPC draco = new NPC("Draco Malfoy", 100, 25, 15);
+        NPC snape = new NPC("Severo Snape", 150, 35, 25);
+
+        System.out.println(CYAN + "Snape aparece e toma o lugar de Draco. Uma escolha difícil está por vir." + RESET);
+        heroi.atacar(draco);
+
+        if (heroi.getVidaAtual() > 0) {
+            System.out.println(CYAN + "Vês Snape assassinar Dumbledore e foge com os Comensais da Morte. O luto por Dumbledore pesa sobre todos." + RESET);
+        } else {
+            System.out.println(RED + "Foste derrotado durante o confronto. Fim de jogo." + RESET);
+        }
+    }
+
+    // TALISMAS DA MORTE
+
+    public void talismasMorte(Heroi heroi, List<String> permitidos) throws InterruptedException {
+        System.out.println(CYAN + "\nEscolheste: Os Talismãs da Morte" + RESET);
+        salaGrutaHorcruxes(heroi, permitidos);
+    }
+
+    private void salaGrutaHorcruxes(Heroi heroi, List<String> permitidos) throws InterruptedException {
+        System.out.println(GREEN + "\n** Sala 1: A Gruta das Horcruxes **" + RESET);
+        System.out.println(YELLOW + "Escolhe um caminho:" + RESET);
+        System.out.println("1. Investigar o escondido esconderijo das Horcruxes.");
+        System.out.println("2. Enfrentar as criaturas guardiãs das Horcruxes.");
+        System.out.print(YELLOW + "Opção: " + RESET);
+
+        int escolha = scanner.nextInt();
+        if (escolha == 1) {
+            System.out.println(CYAN + "Encontras pistas sobre a localização das Horcruxes restantes e ganhas um novo item." + RESET);
+            heroi.adicionarItemAoInventario(new ConsumivelCombate("Mapa das Horcruxes", 0, permitidos, 30));
+        } else if (escolha == 2) {
+            System.out.println(CYAN + "Lutas contra criaturas mágicas que defendem as Horcruxes." + RESET);
+            NPC criaturas = new NPC("Criaturas Guardiãs", 120, 30, 20);
+            heroi.atacar(criaturas);
+        } else {
+            System.out.println(RED + "Escolha inválida." + RESET);
+            salaGrutaHorcruxes(heroi, permitidos);
+            return;
+        }
+
+        salaDesertoHocrux(heroi, permitidos);
+    }
+
+    private void salaDesertoHocrux(Heroi heroi, List<String> permitidos) throws InterruptedException {
+        System.out.println(GREEN + "\n** Sala 2: Deserto das Horcruxes **" + RESET);
+        System.out.println(YELLOW + "Escolhe um caminho:" + RESET);
+        System.out.println("1. Explorar as ruínas antigas em busca da Horcrux.");
+        System.out.println("2. Enfrentar uma emboscada dos Comensais da Morte.");
+        System.out.print(YELLOW + "Opção: " + RESET);
+
+        int escolha = scanner.nextInt();
+        if (escolha == 1) {
+            System.out.println(CYAN + "Encontras uma Horcrux escondida nas ruínas e a pista para o próximo local." + RESET);
+            heroi.adicionarItemAoInventario(new ConsumivelCombate("Horcrux", 0, permitidos, 50));
+        } else if (escolha == 2) {
+            System.out.println(CYAN + "Os Comensais da Morte te emboscam. Prepara-te para lutar!" + RESET);
+            NPC comensais = new NPC("Comensais da Morte", 150, 35, 25);
+            heroi.atacar(comensais);
+        } else {
+            System.out.println(RED + "Escolha inválida." + RESET);
+            salaDesertoHocrux(heroi, permitidos);
+            return;
+        }
+
+        salaFinalHogwarts(heroi);
+    }
+
+    private void salaFinalHogwarts(Heroi heroi) throws InterruptedException {
+        System.out.println(GREEN + "\n** Sala Final: A Batalha de Hogwarts **" + RESET);
+        System.out.println(YELLOW + "Escolhe um caminho:" + RESET);
+        System.out.println("1. Combater os Comensais da Morte na Grande Sala.");
+        System.out.println("2. Confrontar Voldemort diretamente.");
+        System.out.print(YELLOW + "Opção: " + RESET);
+
+        int escolha = scanner.nextInt();
+        if (escolha == 1) {
+            System.out.println(CYAN + "Tu e os aliados lutam bravamente contra os Comensais da Morte." + RESET);
+            NPC comensais = new NPC("Comensais da Morte", 200, 40, 30);
+            heroi.atacar(comensais);
+        } else if (escolha == 2) {
+            System.out.println(CYAN + "Encontras Voldemort para um confronto final." + RESET);
+            NPC voldemort = new NPC("Lord Voldemort", 250, 50, 40);
+            heroi.atacar(voldemort);
+
+            if (heroi.getVidaAtual() > 0) {
+                System.out.println(CYAN + "Parabéns! Derrotaste Voldemort e salvaste o mundo bruxo." + RESET);
+            } else {
+                System.out.println(RED + "Foste derrotado por Voldemort. Fim de jogo." + RESET);
+            }
+        } else {
+            System.out.println(RED + "Escolha inválida." + RESET);
+            salaFinalHogwarts(heroi);
+            return;
+        }
+    }
 }
