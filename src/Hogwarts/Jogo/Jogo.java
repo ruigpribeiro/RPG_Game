@@ -7,9 +7,12 @@ import Hogwarts.Entidades.Herois.RonWeasley;
 import Hogwarts.Entidades.NPC;
 import Hogwarts.Entidades.Vendedor;
 import Hogwarts.Itens.ArmaPrincipal;
+import Hogwarts.Itens.Consumivel;
 import Hogwarts.Itens.ConsumivelCombate;
 import Hogwarts.Itens.Pocao;
+import Hogwarts.Utils.ConsoleUtils;
 
+import java.io.Console;
 import java.util.*;
 
 import java.util.Scanner;
@@ -24,11 +27,12 @@ public class Jogo {
     private static final String BLUE = "\u001B[34m";
     private static final String PURPLE = "\u001B[35m";
     private static final String WHITE = "\u001B[37m";
+    private static final String BOLD = "\u001B[1m";
 
     /**
      * Método construtor.
      */
-    public Jogo() throws InterruptedException {
+    public Jogo() {
         scanner = new Scanner(System.in);
     }
 
@@ -38,20 +42,23 @@ public class Jogo {
      * @return Heroi
      */
     public Heroi criarPersonagem() {
+
+        ConsoleUtils.printTitle();
+
         // Escolha de herói
         Scanner scanner = new Scanner(System.in);
-        System.out.println(YELLOW + "*** Escolhe o teu herói ***" + RESET);
-        System.out.println(BLUE + "1. Harry Potter" + RESET);
-        System.out.println(BLUE + "2. Hermione Granger" + RESET);
-        System.out.println(BLUE + "3. Ron Weasley" + RESET);
-        System.out.print(YELLOW + "Opção: " + RESET);
+        ConsoleUtils.typeWriter(YELLOW + "*** Escolhe o teu herói ***", 0);
+        ConsoleUtils.typeWriter(BLUE + "1. Harry Potter", 0);
+        ConsoleUtils.typeWriter(BLUE + "2. Hermione Granger", 0);
+        ConsoleUtils.typeWriter(BLUE + "3. Ron Weasley",0);
+        System.out.print(YELLOW + "Opção: ");
         int opcaoHeroi = scanner.nextInt();
 
         // Escolha de dificuldade
-        System.out.println(YELLOW + "\n*** Escolhe a dificuldade ***" + RESET);
-        System.out.println(GREEN + "1. Fácil" + RESET);
-        System.out.println(RED + "2. Difícil" + RESET);
-        System.out.print(YELLOW + "Opção: " + RESET);
+        ConsoleUtils.typeWriter(YELLOW + "\n*** Escolhe a dificuldade ***", 0);
+        ConsoleUtils.typeWriter(GREEN + "1. Fácil",0);
+        ConsoleUtils.typeWriter(RED + "2. Difícil", 0);
+        System.out.print(YELLOW + "Opção: ");
         int dificuldade = scanner.nextInt();
 
         int pontosCriacao = 0;
@@ -66,18 +73,18 @@ public class Jogo {
         }
 
         // Distribui os pontos de criação
-        System.out.println(YELLOW + "\nTens " + pontosCriacao + " pontos de criação. Distribui-os entre vida e força." + RESET);
-        System.out.print(GREEN + "Vida: " + RESET);
+        System.out.println(YELLOW + "\nTens " + pontosCriacao + " pontos de criação. Distribui-os entre vida e força." + BOLD);
+        System.out.print(GREEN + "Vida: ");
         int vida = scanner.nextInt();
-        System.out.print(GREEN + "Força: " + RESET);
+        System.out.print(GREEN + "Força: ");
         int forca = scanner.nextInt();
 
         // Verifica se os pontos foram totalmente distribuidos
         while (vida + forca != pontosCriacao) {
-            System.out.println(RED + "Pontos de distribuição incorretos!" + RESET);
-            System.out.print(GREEN + "Pontos de vida: " + RESET);
+            System.out.println(RED + "Pontos de distribuição incorretos!");
+            System.out.print(GREEN + "Vida: ");
             vida = scanner.nextInt();
-            System.out.print(GREEN + "Força: " + RESET);
+            System.out.print(GREEN + "Força: ");
             forca = scanner.nextInt();
         }
 
@@ -95,6 +102,7 @@ public class Jogo {
                 break;
         }
 
+        System.out.println("==========================================================================================================");
         return heroi;
     }
 
@@ -114,9 +122,7 @@ public class Jogo {
         List<String> apenasRon = Arrays.asList("RonWeasley");
 
         // Adicionar armas à loja do vendedor
-        vendedor.adicionarItem(new ArmaPrincipal("Varinha de Olivanders", 25, todosPermitidos, 15, 30));
         vendedor.adicionarItem(new ArmaPrincipal("Espada de Gryffindor", 30, todosPermitidos, 20, 40));
-        vendedor.adicionarItem(new ArmaPrincipal("Varinha do Dragão", 20, todosPermitidos, 18, 35));
         vendedor.adicionarItem(new ArmaPrincipal("Cajado de Dumbledore", 25, todosPermitidos, 22, 45));
         vendedor.adicionarItem(new ArmaPrincipal("Varinha de Fênix", 30, todosPermitidos, 25, 50));
         vendedor.adicionarItem(new ArmaPrincipal("Varinha do Harry", 20, apenasHarry, 20, 30));
@@ -131,37 +137,38 @@ public class Jogo {
         vendedor.adicionarItem(new Pocao("Poção de Vitalidade", 25, todosPermitidos, 30, 15));
 
         // Adicionar feitiços à loja do vendedor
-        vendedor.adicionarItem(new ConsumivelCombate("Expelliarmus", 10, apenasHarry, 50));
-        vendedor.adicionarItem(new ConsumivelCombate("Petrificus Totalus", 10, apenasHermione, 40));
-        vendedor.adicionarItem(new ConsumivelCombate("Wingardium Leviosa", 10, apenasRon, 30));
-        vendedor.adicionarItem(new ConsumivelCombate("Stupefy", 15, todosPermitidos, 25));
-        vendedor.adicionarItem(new ConsumivelCombate("Reducto", 20, todosPermitidos, 35));
-        vendedor.adicionarItem(new ConsumivelCombate("Incendio", 12, todosPermitidos, 20));
-        vendedor.adicionarItem(new ConsumivelCombate("Confringo", 18, todosPermitidos, 30));
+        vendedor.adicionarItem(new ConsumivelCombate("Feitiço: Expelliarmus", 10, apenasHarry, 50));
+        vendedor.adicionarItem(new ConsumivelCombate("Feitiço: Petrificus Totalus", 10, apenasHermione, 40));
+        vendedor.adicionarItem(new ConsumivelCombate("Feitiço: Wingardium Leviosa", 10, apenasRon, 30));
+        vendedor.adicionarItem(new ConsumivelCombate("Feitiço: Stupefy", 15, todosPermitidos, 25));
+        vendedor.adicionarItem(new ConsumivelCombate("Feitiço: Reducto", 20, todosPermitidos, 35));
+        vendedor.adicionarItem(new ConsumivelCombate("Feitiço: Incendio", 12, todosPermitidos, 20));
+        vendedor.adicionarItem(new ConsumivelCombate("Feitiço: Confringo", 18, todosPermitidos, 30));
 
         // Todos começam com uma varinha básica grátis
         heroi.setArmaPrincipal(new ArmaPrincipal("Varinha de Aprendiz", 0, todosPermitidos, 10, 20));
 
         boolean jogar = true;
         while (jogar) {
+
             // Sala de Entrada de Hogwarts
             salaEntradaHogwarts(heroi, vendedor);
 
             System.out.println(YELLOW + "\nEscolhe um labirinto para começar a tua aventura:" + RESET);
             System.out.println(BLUE + "1. Pedra Filosofal" + RESET);
-            System.out.println(BLUE + "2. Câmara dos Segredos" + RESET);
-            System.out.println(BLUE + "3. Prisioneiro de Azkaban" + RESET);
-            System.out.println(BLUE + "4. Cálice de Fogo" + RESET);
-            System.out.println(BLUE + "5. Ordem da Fénix" + RESET);
-            System.out.println(BLUE + "6. Príncipe Misterioso" + RESET);
-            System.out.println(BLUE + "7. Talismãs da Morte" + RESET);
+            System.out.println(BLUE + "2. Câmara dos Segredos - UPCOMING" + RESET);
+            System.out.println(BLUE + "3. Prisioneiro de Azkaban - UPCOMING" + RESET);
+            System.out.println(BLUE + "4. Cálice de Fogo - UPCOMING" + RESET);
+            System.out.println(BLUE + "5. Ordem da Fénix - UPCOMING" + RESET);
+            System.out.println(BLUE + "6. Príncipe Misterioso - UPCOMING" + RESET);
+            System.out.println(BLUE + "7. Talismãs da Morte - UPCOMING" + RESET);
             System.out.print(YELLOW + "Opção: " + RESET);
             int opcaoFilme = scanner.nextInt();
 
             // Encaminha cada escolha para a sua sala
             switch (opcaoFilme) {
                 case 1:
-                    pedraFilosofal(heroi);
+                    pedraFilosofal(heroi, todosPermitidos);
                     break;
                 case 2:
                     camaraSegredos(heroi);
@@ -185,14 +192,24 @@ public class Jogo {
                     System.out.println(RED + "Opção inválida." + RESET);
             }
 
+
             System.out.println(GREEN + "\nDesejas continuar a jogar?" + RESET);
-            System.out.println(YELLOW + "1. Sim" + RESET);
-            System.out.println(RED + "2. Não" + RESET);
+            System.out.println(YELLOW + "1. Começar com uma nova personagem" + RESET); // Não funciona
+            System.out.println(RED + "2. Continuar com a mesma personagem" + RESET); // Não funciona
+            System.out.println(RED + "3. Sair" + RESET); // Funciona
             System.out.print(YELLOW + "Opção: " + RESET);
             int continuar = scanner.nextInt();
+            if (continuar == 1) {
+                labirintoHogwarts(criarPersonagem());
+            }
             if (continuar == 2) {
-                jogar = false;
+                heroi.setOuro(20);
+                heroi.setNivel(1);
+                labirintoHogwarts(heroi);
+            }
+            if (continuar == 3) {
                 System.out.println(GREEN + "Obrigado por jogar!" + RESET);
+                System.exit(0);
             }
         }
     }
@@ -205,9 +222,9 @@ public class Jogo {
      */
     public void salaEntradaHogwarts(Heroi heroi, Vendedor vendedor) throws InterruptedException {
         // Introdução do jogo
-        System.out.println(CYAN + "\nBem-vindo à escola de Hogwarts, " + heroi.getNome() + "!");
-        System.out.println("Tu foste escolhido para enfrentar os desafios do Labirinto de Hogwarts.");
-        System.out.println("O teu objetivo é ultrapassar todos os obstáculos e derrotar o tenebroso Voldemort." + RESET + "\n");
+        ConsoleUtils.typeWriter(CYAN + "\nBem-vindo à escola de Hogwarts, " + heroi.getNome() + "!", 25);
+        ConsoleUtils.typeWriter("Tu foste escolhido para enfrentar os desafios do Labirinto de Hogwarts.", 25);
+        ConsoleUtils.typeWriter("O teu objetivo é ultrapassar todos os obstáculos e derrotar o tenebroso Voldemort." + "\n", 25);
         Thread.sleep(1000);
 
         while (true) {
@@ -238,9 +255,9 @@ public class Jogo {
      * @param heroi O Herói
      * @throws InterruptedException
      */
-    private void pedraFilosofal(Heroi heroi) throws InterruptedException {
+    private void pedraFilosofal(Heroi heroi,List<String> heroisPermitidos) throws InterruptedException {
         System.out.println(CYAN + "\nEscolheste: Pedra Filosofal" + RESET);
-        salaFlorestaProibida(heroi);
+        salaFlorestaProibida(heroi, heroisPermitidos);
     }
 
     /**

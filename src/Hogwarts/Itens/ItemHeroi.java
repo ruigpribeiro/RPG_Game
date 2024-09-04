@@ -24,7 +24,7 @@ public abstract class ItemHeroi {
      * Imprime todas as informações do ItemHeroi no terminal.
      */
     public void mostrarDetalhes() {
-        System.out.print("Nome: " + nome + ", Preço: " + preco + ", Heróis Permitidos: " + heroisPermitidos);
+        System.out.print("Ítem: " + nome + " - Preço: " + preco + " - Heróis Permitidos: " + heroisPermitidos);
     }
 
     // Getters
