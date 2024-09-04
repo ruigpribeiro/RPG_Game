@@ -1,7 +1,7 @@
 package Hogwarts;
 
-import Hogwarts.Entidades.Herois.Heroi;
-import Hogwarts.Jogo.Jogo;
+import Hogwarts.entidades.Herois.Heroi;
+import Hogwarts.jogo.Jogo;
 
 public class Main {
     public static void main(String[] args) throws InterruptedException {

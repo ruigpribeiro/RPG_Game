@@ -6,10 +6,21 @@
   <component name="ChangeListManager">
     <list default="true" id="6ab47c59-f747-47ab-a743-146365655e03" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Hogwarts/Itens/ConsumivelCombate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Hogwarts/Itens/ConsumivelCombate.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Hogwarts/Itens/ItemHeroi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Hogwarts/Itens/ItemHeroi.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Hogwarts/Itens/Pocao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Hogwarts/Itens/Pocao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Hogwarts/Jogo/Jogo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Hogwarts/Jogo/Jogo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Hogwarts/Entidades/Entidade.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Hogwarts/entidades/Entidade.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Hogwarts/Entidades/Herois/HarryPotter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Hogwarts/entidades/Herois/HarryPotter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Hogwarts/Entidades/Herois/HermioneGranger.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Hogwarts/entidades/Herois/HermioneGranger.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Hogwarts/Entidades/Herois/Heroi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Hogwarts/entidades/Herois/Heroi.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Hogwarts/Entidades/Herois/RonWeasley.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Hogwarts/entidades/Herois/RonWeasley.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Hogwarts/Entidades/NPC.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Hogwarts/entidades/NPC.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Hogwarts/Entidades/Vendedor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Hogwarts/entidades/Vendedor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Hogwarts/Itens/ArmaPrincipal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Hogwarts/itens/ArmaPrincipal.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Hogwarts/Itens/Consumivel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Hogwarts/itens/Consumivel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Hogwarts/Itens/ConsumivelCombate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Hogwarts/itens/ConsumivelCombate.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Hogwarts/Itens/ItemHeroi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Hogwarts/itens/ItemHeroi.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Hogwarts/Itens/Pocao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Hogwarts/itens/Pocao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Hogwarts/Jogo/Jogo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Hogwarts/jogo/Jogo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Hogwarts/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Hogwarts/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Hogwarts/Utils/ConsoleUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Hogwarts/utils/ConsoleUtils.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,7 +63,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "master",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/sw2024/Desktop/RPG_Game",
+    "last_opened_file_path": "C:/Users/Rui Ribeiro/Desktop/RPG_Game",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -102,6 +113,7 @@
       <updated>1722015679999</updated>
       <workItem from="1722015681090" duration="14661000" />
       <workItem from="1723471184471" duration="423000" />
+      <workItem from="1725474360063" duration="162000" />
     </task>
     <servers />
   </component>
