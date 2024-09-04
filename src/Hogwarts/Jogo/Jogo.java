@@ -197,6 +197,12 @@ public class Jogo {
         }
     }
 
+    /**
+     * Sala inicial em que aparece o vendedor
+     * @param heroi O Herói
+     * @param vendedor O Vendedor
+     * @throws InterruptedException
+     */
     public void salaEntradaHogwarts(Heroi heroi, Vendedor vendedor) throws InterruptedException {
         // Introdução do jogo
         System.out.println(CYAN + "\nBem-vindo à escola de Hogwarts, " + heroi.getNome() + "!");
@@ -227,12 +233,22 @@ public class Jogo {
 
     // PEDRA FILOSOFAL
 
+    /**
+     * Método para apenas imprimir a escolha do utilizador
+     * @param heroi O Herói
+     * @throws InterruptedException
+     */
     private void pedraFilosofal(Heroi heroi) throws InterruptedException {
         System.out.println(CYAN + "\nEscolheste: Pedra Filosofal" + RESET);
         salaFlorestaProibida(heroi);
     }
 
-    private void salaFlorestaProibida(Heroi heroi) {
+    /**
+     * Sala onde recebe uma poção ou enfrenta o Voldemort
+     * @param heroi O herói
+     * @param heroisPermitidos Uma lista de heróis permitidos
+     */
+    private void salaFlorestaProibida(Heroi heroi, List<String> heroisPermitidos) {
         System.out.println(GREEN + "\n** Sala 1: Floresta Proibida **" + RESET);
         System.out.println(YELLOW + "Escolhe um caminho:" + RESET);
         System.out.println("1. Explorar a floresta.");
@@ -242,19 +258,21 @@ public class Jogo {
         int escolha = scanner.nextInt();
         if (escolha == 1) {
             System.out.println(CYAN + "Encontraste um centauro que avisa-te sobre o perigo que corres." + RESET);
-            // Adicionar algum efeito ou interação.
+            Pocao pocao = new Pocao("La Vida", 0, heroisPermitidos, 10, 5);
+            heroi.adicionarItemAoInventario(pocao);
         } else if (escolha == 2) {
             System.out.println(CYAN + "Encontraste o Voldemort a beber sangue de unicórnio!" + RESET);
             NPC voldemort = new NPC("Voldemort", 100, 20, 15);
             heroi.atacar(voldemort);
         } else {
             System.out.println(RED + "Escolha inválida." + RESET);
-            salaFlorestaProibida(heroi);
+            salaFlorestaProibida(heroi, heroisPermitidos);
         }
 
         salaXadrezGigante(heroi);
     }
 
+    // Falta implementar
     private void salaXadrezGigante(Heroi heroi) {
         System.out.println(GREEN + "\n** Sala 2: Sala do Xadrez Gigante **" + RESET);
         System.out.println(YELLOW + "Escolhe um caminho:" + RESET);
@@ -276,6 +294,7 @@ public class Jogo {
 
         salaEnigmaPocoes(heroi);
     }
+
 
     private void salaEnigmaPocoes(Heroi heroi) {
         System.out.println(GREEN + "\n** Sala 3: Enigma das Poções **" + RESET);
@@ -304,6 +323,10 @@ public class Jogo {
         salaFinalPedraFilosofal(heroi);
     }
 
+    /**
+     * Sala final onde enfrenta o Voldemort
+     * @param heroi O herói
+     */
     private void salaFinalPedraFilosofal(Heroi heroi) {
         System.out.println(GREEN + "\n** Sala Final: Confronto com Voldemort **" + RESET);
         NPC voldemort = new NPC("Voldemort", 150, 30, 20);
@@ -318,11 +341,21 @@ public class Jogo {
 
     // CAMARA DOS SEGREDOS
 
+    /**
+     * Método para apenas imprimir a escolha do utilizador
+     * @param heroi O herói
+     * @throws InterruptedException
+     */
     public void camaraSegredos(Heroi heroi) throws InterruptedException {
         System.out.println(CYAN + "\nEscolheste: Câmara dos Segredos" + RESET);
         entradaCamaraSegredos(heroi);
     }
 
+    /**
+     * Sala onde vai direto para a câmara dos segredos ou recebe dano
+     * @param heroi O herói
+     * @throws InterruptedException
+     */
     public void entradaCamaraSegredos(Heroi heroi) throws InterruptedException {
         System.out.println(GREEN + "\n** Sala 1: Entrada da Câmara dos Segredos **" + RESET);
         System.out.println(YELLOW + "Escolhe um caminho:" + RESET);
@@ -363,17 +396,17 @@ public class Jogo {
             Random random = new Random();
             int dano = random.nextInt(10) + 5; // Dano entre 5 e 15
             heroi.setVidaAtual(heroi.getVidaAtual() - dano);
-            System.out.println(RED + "Tu sofreste " + dano + " de dano ao evitar os obstáculos." + RESET);
+            System.out.println(RED + "Sofreste " + dano + " de dano ao evitar os obstáculos." + RESET);
         } else if (escolha == 2) {
-            System.out.println(CYAN + "Tu enfrentas uma série de portas, cada uma com uma charada mágica." + RESET);
+            System.out.println(CYAN + "Enfrentaste uma série de portas, cada uma com um enimga mágico." + RESET);
             Random random = new Random();
             boolean sucesso = random.nextBoolean();
             if (sucesso) {
-                System.out.println(CYAN + "Resolveste todas as charadas e avançaste!" + RESET);
+                System.out.println(CYAN + "Resolveste todos os enigmas e avançaste!" + RESET);
             } else {
                 int dano = random.nextInt(10) + 5; // Dano entre 5 e 15
                 heroi.setVidaAtual(heroi.getVidaAtual() - dano);
-                System.out.println(RED + "Falhaste em uma charada e sofreste " + dano + " de dano." + RESET);
+                System.out.println(RED + "Falhaste no enigma e sofreste " + dano + " de dano." + RESET);
             }
         } else {
             System.out.println(RED + "Escolha inválida." + RESET);
@@ -393,7 +426,7 @@ public class Jogo {
 
         int escolha = scanner.nextInt();
         if (escolha == 1) {
-            System.out.println(CYAN + "Tu tentas ganhar tempo dialogando com Tom Riddle, mas ele te observa com cautela." + RESET);
+            System.out.println(CYAN + "Tentaste ganhar tempo ao dialogar com Tom Riddle, mas ele observa-te com cautela." + RESET);
             // Pode-se adicionar um efeito ou interação adicional, como reduzir a força de Tom Riddle na batalha final.
         } else if (escolha == 2) {
             System.out.println(CYAN + "Tom Riddle invoca criaturas para lutar contra ti!" + RESET);
@@ -417,7 +450,7 @@ public class Jogo {
         NPC basilisco = new NPC("Basilisco", 120, 30, 25);
         NPC tomRiddle = new NPC("Tom Riddle", 100, 25, 20);
 
-        System.out.println(CYAN + "Tu enfrentas o poderoso Basilisco e a figura de Tom Riddle!" + RESET);
+        System.out.println(CYAN + "Enfrentaste o poderoso Basilisco e a figura de Tom Riddle!" + RESET);
 
         heroi.atacar(basilisco);
         if (heroi.getVidaAtual() > 0) {
@@ -431,7 +464,7 @@ public class Jogo {
         }
     }
 
-    // PRISIONEIRO DE AZKABAN
+    // PRISIONEIRO DE AZKABAN ---------------------------------------
 
     public void prisioneiroAzkaban(Heroi heroi) throws InterruptedException {
         System.out.println(CYAN + "\nEscolheste: O Prisioneiro de Azkaban" + RESET);
@@ -900,7 +933,7 @@ public class Jogo {
             heroi.atacar(voldemort);
 
             if (heroi.getVidaAtual() > 0) {
-                System.out.println(CYAN + "Parabéns! Derrotaste Voldemort e salvaste o mundo bruxo." + RESET);
+                System.out.println(CYAN + "Parabéns! Derrotaste o Voldemort e salvaste o mundo." + RESET);
             } else {
                 System.out.println(RED + "Foste derrotado por Voldemort. Fim de jogo." + RESET);
             }
