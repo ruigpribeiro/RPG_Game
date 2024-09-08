@@ -21,7 +21,8 @@ public abstract class ItemHeroi {
     }
 
     /**
-     * Imprime todas as informações do ItemHeroi no terminal.
+     * Imprime os detalhes do item no terminal.
+     * O método exibe o nome do item, o seu preço e a lista de heróis permitidos a usá-lo.
      */
     public void mostrarDetalhes() {
         System.out.print("Ítem: " + nome + " - Preço: " + preco + " - Heróis Permitidos: " + heroisPermitidos);

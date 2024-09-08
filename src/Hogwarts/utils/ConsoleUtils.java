@@ -75,7 +75,9 @@ public class ConsoleUtils {
     public static final String CYAN_BACKGROUND_BRIGHT = "\033[0;106m";  // CYAN
     public static final String WHITE_BACKGROUND_BRIGHT = "\033[0;107m";   // WHITE
 
-
+    /**
+     * Imprime um título de arte ASCII e uma linha de separador para a consola.
+     */
     public static void printTitle() {
 
         String title = "  _          _     _      _       _              _        _   _                                _       \n" +
@@ -89,6 +91,36 @@ public class ConsoleUtils {
         System.out.println("==========================================================================================================");
     }
 
+    /**
+     * Imprime um título de arte ASCII para a consola.
+     */
+    public static void printFinalMessage() {
+        String finalMessage = "                                                                                                                   \n" +
+                "     _____         _____        _____         _____         _____        ______  _____   ______            ______  \n" +
+                " ___|\\    \\    ___|\\    \\   ___|\\    \\    ___|\\    \\   ___|\\     \\   ___|\\     \\|\\    \\ |\\     \\       ___|\\     \\ \n" +
+                "|    |\\    \\  /    /\\    \\ |    |\\    \\  /    /\\    \\ |    |\\     \\ |     \\     \\\\\\    \\| \\     \\     |    |\\     \\\n" +
+                "|    | |    ||    |  |    ||    | |    ||    |  |    ||    | |     ||     ,_____/|\\|    \\  \\     |    |    |/____/|\n" +
+                "|    |/____/||    |__|    ||    |/____/ |    |__|    ||    | /_ _ / |     \\--'\\_|/ |     \\  |    | ___|    \\|   | |\n" +
+                "|    ||    |||    .--.    ||    |\\    \\ |    .--.    ||    |\\    \\  |     /___/|   |      \\ |    ||    \\    \\___|/ \n" +
+                "|    ||____|/|    |  |    ||    | |    ||    |  |    ||    | |    | |     \\____|\\  |    |\\ \\|    ||    |\\     \\    \n" +
+                "|____|       |____|  |____||____| |____||____|  |____||____|/____/| |____ '     /| |____||\\_____/||\\ ___\\|_____|   \n" +
+                "|    |       |    |  |    ||    | |    ||    |  |    ||    /     || |    /_____/ | |    |/ \\|   ||| |    |     |   \n" +
+                "|____|       |____|  |____||____| |____||____|  |____||____|_____|/ |____|     | / |____|   |___|/ \\|____|_____|   \n" +
+                "  \\(           \\(      )/    \\(     )/    \\(      )/    \\(    )/      \\( |_____|/    \\(       )/      \\(    )/     \n" +
+                "   '            '      '      '     '      '      '      '    '        '    )/        '       '        '    '      \n" +
+                "                                                                            '                                      ";
+
+        System.out.println();
+        System.out.println(finalMessage);
+    }
+
+    /**
+     * Reduz o texto passado como argumento para a consola simulando um efeito de máquina de escrever.
+     * Cada caratér do texto é impresso com um determinado delay.
+     *
+     * @param text A string a ser impressa com efeito máquina de escrever.
+     * @param delay O atraso em milissegundos entre cada caratér.
+     */
     public static void typeWriter(String text, int delay) {
         for (char c : text.toCharArray()) {
             System.out.print(c);
@@ -99,6 +131,22 @@ public class ConsoleUtils {
             }
         }
         System.out.println();
+    }
+
+    /**
+     * Limpa tudo da consola.
+     */
+    public static void clearConsole() {
+        try {
+            if (System.getProperty("os.name").contains("Windows")) {
+                new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+            } else {
+                System.out.print("\033[H\033[2J");
+                System.out.flush();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 }

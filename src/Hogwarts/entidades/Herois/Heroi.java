@@ -6,7 +6,9 @@ import Hogwarts.itens.Consumivel;
 import Hogwarts.itens.ItemHeroi;
 import Hogwarts.itens.Pocao;
 import Hogwarts.itens.ArmaPrincipal;
+import Hogwarts.utils.ConsoleUtils;
 
+import java.io.Console;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -35,24 +37,28 @@ public abstract class Heroi extends Entidade {
     }
 
     /**
-     * Adiciona um ítem ao inventário do herói
+     * Adiciona um item ao inventário do herói.
      *
-     * @param item O ítem a ser adicionado
+     * @param item O item a ser adicionado ao inventário.
      */
     public void adicionarItemAoInventario(ItemHeroi item) {
         inventario.add((Consumivel) item);
     }
 
     /**
-     * Confronta o herói com um npc numa luta até que um deles fique sem vida.
+     * Tenta atacar o inimigo especificado.
+     *
+     * @param inimigo O NPC que será atacado.
+     * @return true se o ataque for bem-sucedido, false caso contrário.
      */
     public abstract boolean atacar(NPC inimigo);
 
     /**
-     * Imprime todas as poções do inventário do herói no terminal
+     * Método para usar uma poção do inventário do herói. Este método exibe todas as poções disponíveis no inventário,
+     * permite ao utilizador escolher uma para usar e aplica os efeitos da poção selecionada.
      */
     public void usarPocao() {
-        System.out.println("Aqui tens o teu inventário de Poções:");
+        System.out.println(ConsoleUtils.BLUE + "\nAqui tens o teu inventário de Poções:" + ConsoleUtils.RESET);
         List<Pocao> pocoes = new ArrayList<>();
 
         // Guarda todas as poções no novo array pocoes
@@ -64,7 +70,7 @@ public abstract class Heroi extends Entidade {
 
         // Verifica se não há poções disponíveis
         if (pocoes.isEmpty()) {
-            System.out.println("Não tens poções no inventário.");
+            System.out.println(ConsoleUtils.RED + "Não tens poções no inventário." + ConsoleUtils.RESET);
             return;
         }
 
@@ -76,7 +82,7 @@ public abstract class Heroi extends Entidade {
         }
 
         // Input do utilizador
-        System.out.println("Escolhe a poção que queres usar (ou 0 para cancelar):");
+        System.out.print(ConsoleUtils.YELLOW + "Escolhe a poção que queres usar (ou 0 para cancelar):" + ConsoleUtils.RESET);
         scanner = new Scanner(System.in);
         int opcao = scanner.nextInt();
 
@@ -87,7 +93,7 @@ public abstract class Heroi extends Entidade {
             vidaAtual += pocaoEscolhida.getVidaCurar();
             forca += pocaoEscolhida.getAumentoForca();
 
-            System.out.println("Usaste a poção " + pocaoEscolhida.getNome() + ". Vida curada: "
+            System.out.println("\nUsaste a poção " + pocaoEscolhida.getNome() + ". Vida curada: "
                     + pocaoEscolhida.getVidaCurar() + ", Força aumentada: " + pocaoEscolhida.getAumentoForca());
 
             // Remover a poção usada do inventário
@@ -131,4 +137,5 @@ public abstract class Heroi extends Entidade {
     public void setInventario(List<Consumivel> inventario) {
         this.inventario = inventario;
     }
+
 }

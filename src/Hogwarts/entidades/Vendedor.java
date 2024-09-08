@@ -10,17 +10,17 @@ import java.util.Random;
 public class Vendedor {
     private List<ItemHeroi> loja;
 
-    /**
-     * Método construtor.
-     */
+
     public Vendedor() {
         loja = new ArrayList<>();
     }
 
     /**
-     * Vende ítens ao herói e adiciona-os ao seu invetário ou substítui a sua arma principal
-     * @param heroi O herói que vai comprar
-     * @param opcao A opção da lista
+     * Vende um item da loja para um herói, verificando se o herói pode usar o item,
+     * se possui ouro suficiente e atualiza o ouro e os itens do herói em conformidade.
+     *
+     * @param heroi O herói que está comprando o item.
+     * @param opcao O índice do item na loja que o herói deseja comprar.
      */
     public void venderItem(Heroi heroi, int opcao) {
         ItemHeroi item = loja.get(opcao);
@@ -53,7 +53,11 @@ public class Vendedor {
     }
 
     /**
-     * Imprime aleatoriamente 10 itens da loja.
+     * Mostra itens disponíveis na loja para o usuário. Se a loja contém menos de 10 itens, uma mensagem
+     * será exibida solicitando para adicionar mais itens. Em seguida, seleciona aleatoriamente 10 itens
+     * da loja, imprime os seus detalhes e retorna a lista dos índices dos itens exibidos.
+     *
+     * @return Uma lista de índices dos itens que foram exibidos da loja.
      */
     public List<Integer> mostrarItensLoja() {
         Random random = new Random();
@@ -76,7 +80,7 @@ public class Vendedor {
             }
         }
 
-        // Imrpime os itens
+        // Imprime os ítens
         for (int i = 0; i < indicesUsados.size(); i++) {
             System.out.print((i + 1) + ": ");
             loja.get(indicesUsados.get(i)).mostrarDetalhes();
@@ -87,9 +91,9 @@ public class Vendedor {
     }
 
     /**
-     * Adiciona um ítem à lista loja do vendedor
+     * Adiciona um item à loja do vendedor.
      *
-     * @param item O ítem a adicionar
+     * @param item O item a ser adicionado à loja.
      */
     public void adicionarItem(ItemHeroi item) {
         loja.add(item);

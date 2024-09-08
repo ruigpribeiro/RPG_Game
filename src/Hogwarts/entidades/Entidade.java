@@ -14,10 +14,16 @@ public abstract class Entidade {
         this.vidaAtual = vidaMax; // A vida atual começa igual à vida máxima
     }
 
+    /**
+     * Exibe os detalhes da entidade, incluindo o nome, a vida atual
+     * e a força no formato "Nome: [nome], Vida Atual: [vidaAtual],
+     * Força: [forca]".
+     */
     public void mostrarDetalhes() {
         System.out.println("Nome: " + nome + ", Vida Atual: " + vidaAtual + ", Força: " + forca);
     }
 
+    // Getters e Setters
     public String getNome() {
         return nome;
     }
@@ -36,5 +42,9 @@ public abstract class Entidade {
 
     public void setForca(int forca) {
         this.forca = forca;
+    }
+
+    public int getVidaMax() {
+        return vidaMax;
     }
 }

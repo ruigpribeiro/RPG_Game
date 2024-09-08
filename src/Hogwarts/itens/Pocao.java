@@ -12,12 +12,19 @@ public class Pocao extends Consumivel {
         this.aumentoForca = aumentoForca;
     }
 
+    /**
+     * Imprime os detalhes da poção no terminal.
+     * Este método exibe os detalhes básicos do item (nome, preço e heróis permitidos)
+     * e adiciona informações adicionais específicas da poção, como a vida que pode
+     * curar e o aumento de força que ela proporciona.
+     */
     @Override
     public void mostrarDetalhes() {
         super.mostrarDetalhes();
         System.out.print("- Vida: " + vidaCurar + " - Força: " + aumentoForca);
     }
 
+    // Getters
     public int getVidaCurar() {
         return vidaCurar;
     }

@@ -10,6 +10,12 @@ public class ConsumivelCombate extends Consumivel {
         this.ataqueInstantaneo = ataqueInstantaneo;
     }
 
+    /**
+     * Imprime todos os detalhes do ConsumivelCombate no terminal, incluindo detalhes específicos de Consumivel
+     * e o valor de ataque instantâneo associado.
+     *
+     * Sobrescreve o método mostrarDetalhes da classe pai Consumivel.
+     */
     @Override
     public void mostrarDetalhes() {
         super.mostrarDetalhes();

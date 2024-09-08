@@ -14,6 +14,10 @@ public class ArmaPrincipal extends ItemHeroi {
         this.ataqueEspecial = ataqueEspecial;
     }
 
+    /**
+     * Imprime os detalhes da arma principal no terminal.
+     * Além das informações básicas do item, exibe o valor dos atributos de ataque e ataque especial.
+     */
     @Override
     public void mostrarDetalhes() {
         super.mostrarDetalhes();
